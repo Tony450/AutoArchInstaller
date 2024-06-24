@@ -6,7 +6,7 @@ setopt autocd beep extendedglob nomatch notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/tony450/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -159,8 +159,8 @@ neofetch
 
 export PATH=$PATH:/opt/miktex/bin/
 export PATH=$PATH:/opt/cyberchef/
-export PATH=$PATH:/home/tony450/.local/bin
-export Mp3DownTagger=/home/tony450/Music/Mp3DownTagger/
-export PATH=$PATH:/home/tony450/Music/Mp3DownTagger/
+export PATH=$PATH:~/.local/bin
+export Mp3DownTagger=/opt/Mp3DownTagger/
+export PATH=$PATH:/opt/Mp3DownTagger/
 
 

@@ -23,14 +23,9 @@
 #NOTE:
 #   This script must be run after a restart, otherwise it won't work
 
-username=""
+username=$(whoami)
 temporary_vmware_solution=true
 no_confirmation="--noconfirm"
-
-if [[ $username == "" ]]; then
-    echo "Initialize the required data first"
-    exit
-fi
 
 #Mark Informant news as read
 echo -e "\n------------------------------Mark Informant news as read------------------------------"

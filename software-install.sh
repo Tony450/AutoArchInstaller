@@ -21,13 +21,13 @@
 #       ./software-install.sh |& tee software-install.log
 #       ./software-install.sh > >(tee software-install-stdout.log) 2> >(tee software-install-stderr.log >&2)
 
-username=""
+username=$(whoami)
 no_confirmation="--noconfirm"
 working_directory=$(pwd)
 git_user_name=""
 git_user_email=""
 
-if [[ $username == "" || $git_user_name == ""  || $git_user_email == "" ]]; then
+if [[ $git_user_name == ""  || $git_user_email == "" ]]; then
     echo "Initialize the required data first"
     exit
 fi
@@ -73,7 +73,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pipx gimp firefox hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute kompare isoimagewriter elisa kclock marknote kmymoney skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm xdotool kmail korganizer kaddressbook akregator knotes plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pipx gimp firefox hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute kompare isoimagewriter elisa kclock marknote kmymoney skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm xdotool kmail korganizer kaddressbook akregator knotes plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator $no_confirmation
 
 #phonon-qt5-vlc
 #tesseract 5.3.4-2
@@ -109,8 +109,6 @@ cp -f Terminal/p10k.zsh /home/$username/.p10k.zsh
 
 cd /usr/share/zsh/plugins
 sudo mkdir zsh-sudo && sudo mkdir zsh-interactive-cd
-sudo chown $username:$username zsh-sudo
-sudo chown $username:$username zsh-interactive-cd
 
 cd /home/$username/Downloads
 wget https://raw.githubusercontent.com/mrjohannchang/zsh-interactive-cd/master/zsh-interactive-cd.plugin.zsh
@@ -160,6 +158,7 @@ echo -e "\n------------------------------Autostart scripts----------------------
 
 cd $working_directory
 cp -r Autostart /home/$username
+mv /home/$username/Autostart/lean-conky-config/local2.conf /home/$username/Autostart/lean-conky-config/local.conf
 cd
 
 #Wallpapers and icons
@@ -274,6 +273,7 @@ if [[ $(sudo virt-what) ]]; then
     sudo pacman -S gtkmm open-vm-tools xf86-video-vmware xf86-input-vmmouse $no_confirmation
     sudo systemctl enable vmtoolsd && sudo systemctl start vmtoolsd
     sudo systemctl enable vmware-vmblock-fuse && sudo systemctl start vmware-vmblock-fuse
+    sudo mkdir /mnt/hgfs & sudo echo -e "\n# Shared folders\n vmhgfs-fuse /mnt/hgfs fuse defaults,allow_other 0 0" >> /etc/fstab & sudo mount -a
 fi
 
 
@@ -307,6 +307,14 @@ sudo git clone https://github.com/NvChad/starter /root/.config/nvim && sudo nvim
 cd
 
 sudo updatedb                                                                                                           #For locate command to work
+
+#Mp3DownTagger
+echo -e "\n------------------------------Mp3DownTagger------------------------------"
+cd /home/$username/Downloads
+git clone https://github.com/Tony450/Mp3DownTagger
+cd Mp3DownTagger/Installer/GNU\ Linux && ./install.sh
+cd .. && sudo rm -r Mp3DownTagger
+cd
 
 #Password timeout
 echo -e "\n------------------------------Password timeout------------------------------"

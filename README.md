@@ -49,6 +49,7 @@ NOTES:
 - Initialize the data at the beginning of the scripts before you run them.
 - It can take around 3 hours for the software-install script to be completed. When approximately 2 hours are elapsed it will ask you to confirm some install options (the Foxit Reader installation wizard and the addition of the Spanish DNIe security device).
 - The first usage on the software-install script allows you to log both the standard and the error output to a single file, while the second usage allows you to log each output to a different file.
+- Shared folders will be located in /mnt/hgfs directory.
 - The troubleshooting-install script must be run after a restart, otherwise it won't work.
 
 
