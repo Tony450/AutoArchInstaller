@@ -29,7 +29,7 @@ wezterm.on('gui-startup', function(cmd)
     local cmd = cmd or {}
     -- I prefer to use the cwd of the gui process instead of (probably) the home dir
     if not cmd.cwd then
-      cmd.cwd = wezterm.procinfo.current_working_dir_for_pid(wezterm.procinfo.pid())
+      	cmd.cwd = wezterm.procinfo.current_working_dir_for_pid(wezterm.procinfo.pid())
     end
     mux.spawn_window(cmd)
 end)
@@ -62,10 +62,10 @@ config.keys                                       = {
     { key = '0', mods = 'CTRL',       action = act.ResetFontSize },
     { key = 'C', mods = 'SHIFT|CTRL', action = act.CopyTo 'Clipboard' },
     {
-      key = 'U',
-      mods = 'SHIFT|CTRL',
-      action = act.CharSelect { copy_on_select = true, copy_to =
-      'ClipboardAndPrimarySelection' }
+		key = 'U',
+		mods = 'SHIFT|CTRL',
+		action = act.CharSelect { copy_on_select = true, copy_to =
+		'ClipboardAndPrimarySelection' }
     },
     { key = '`',     mods = 'CTRL',        action = act.ActivatePaneDirection 'Next' },
     { key = 'v',     mods = 'CMD',         action = act.PasteFrom 'Clipboard' },
@@ -78,14 +78,15 @@ config.keys                                       = {
     { key = 'b',     mods = 'LEADER|CTRL', action = act.SendString '\x02', },
     { key = 'Enter', mods = 'LEADER',      action = act.ActivateCopyMode, },
     { key = 'p',     mods = 'LEADER',      action = act.PasteFrom 'Clipboard' },
+    { key = 't',     mods = 'SHIFT|ALT',   action = act.SpawnTab 'CurrentPaneDomain' },     					--Both keys at the same time
+    { key = 'F', mods = 'SHIFT|CTRL', action = act.Search { CaseInSensitiveString = '' },},
+	{ key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab { confirm = true },	},
     {
-      key = 'k',
-      mods = 'CTRL|SHIFT',
-      action = act.Multiple
-          {
-            act.ClearScrollback 'ScrollbackAndViewport',
-            act.SendKey { key = 'L', mods = 'CTRL' },
-          },
+		key = 'k',
+		mods = 'CTRL|SHIFT',
+		action = act.Multiple
+			{act.ClearScrollback 'ScrollbackAndViewport',
+			act.SendKey { key = 'L', mods = 'CTRL' },},
     },
     { key = 'r', mods = 'LEADER', action = act.ActivateKeyTable { name = 'resize_pane', one_shot = false, }, }
 }
