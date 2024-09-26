@@ -79,8 +79,8 @@ config.keys                                       = {
     { key = 'Enter', mods = 'LEADER',      action = act.ActivateCopyMode, },
     { key = 'p',     mods = 'LEADER',      action = act.PasteFrom 'Clipboard' },
     { key = 't',     mods = 'SHIFT|ALT',   action = act.SpawnTab 'CurrentPaneDomain' },     					--Both keys at the same time
-    { key = 'F', mods = 'SHIFT|CTRL', action = act.Search { CaseInSensitiveString = '' },},
-	{ key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab { confirm = true },	},
+    { key = 'f', mods = 'SHIFT|CTRL', action = act.Search { CaseInSensitiveString = '' },},
+	  { key = 'w', mods = 'SHIFT|ALT', action = wezterm.action.CloseCurrentTab { confirm = true },	},
     {
 		key = 'k',
 		mods = 'CTRL|SHIFT',
