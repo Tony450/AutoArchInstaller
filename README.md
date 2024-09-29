@@ -40,7 +40,7 @@ I hope that you find this project useful and also that you enjoy customizing the
 
 NOTES:
 - Make sure UEFI mode is enabled.
-- "wlanX", "wifi_name" and "/dev/sdX" are just generic names in order not to confuse you. Use the correct names depending on your hardware.
+- `wlanX`, `wifi_name` and `/dev/sdX` are just generic names in order not to confuse you. Use the correct names depending on your hardware.
 - It is recommended to use the Long Term Support (LTS) kernel version instead of the Stable one. Sometimes, I have experienced issues after upgrading with some applications such as VMware because of the kernel version.
 - Use X11 and bridge network connection options for VM installation.
 - Read carefully the comments in the scripts. They show useful information on how to use them to log their output and their errors to different files and also what certain commands do and the reasons for their presence.
