@@ -103,10 +103,10 @@ function core.datetime()
 end
 
 lcc.tpl.system = [[
-${font}${sysname} ${kernel} ${alignr}${machine}
+${font}${exec ./scripts/distrokernel.sh} ${alignr}${machine}
 Host:${alignr}${nodename}
 Uptime:${alignr}${uptime}
-Processes:${alignr}${running_processes} / ${processes}]]
+Processes:${alignr} ${processes}]]
 function core.system(args)
     return core.section("SYSTEM", "") .. "\n" .. lcc.tpl.system()
 end
@@ -236,8 +236,8 @@ end
 
 lcc.tpl.network = [[
 ${color2}${lua font icon_s { } {}}${lua font h2 {Local IPs}}${alignr}${lua font h2 {External IP}}${lua font icon_s { } {}}${font}${color}
-${execi 60 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}#
-${alignr}${texeci 3600  wget -q -O- https://ipecho.net/plain; echo}
+${execi 10 ./scripts/network_interfaces.sh}#
+${alignr}${texeci 10 host -4 myip.opendns.com resolver1.opendns.com | tail -n 1 | awk '{print $4}'}
 ${voffset $sr{5}}${lua ifaces 10}]]
 function core.network()
     return core.section("NETWORK", "") .. "\n" .. lcc.tpl.network()

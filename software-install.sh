@@ -73,7 +73,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute kompare isoimagewriter elisa kclock marknote kmymoney skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm xdotool kmail korganizer kaddressbook akregator knotes plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib copyq kruler bpytop kwalletmanager ufw $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute kompare isoimagewriter elisa kclock marknote kmymoney skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib copyq kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker cvemap eternal-scanner gitleaks dnsrecon exrex $no_confirmation
 
 #phonon-qt5-vlc
 #tesseract 5.3.4-2
@@ -92,7 +92,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur plasma-dialer-git vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage $no_confirmation #activitywatch-bin?  python-pynvml
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur plasma-dialer-git vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage rar enum4linux ffuf feroxbuster wordlists $no_confirmation #activitywatch-bin?  python-pynvml
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -108,7 +108,8 @@ cp -f Terminal/wezterm.lua /home/$username/.wezterm.lua
 cp -f Terminal/p10k.zsh /home/$username/.p10k.zsh
 
 cd /usr/share/zsh/plugins
-sudo mkdir zsh-sudo && sudo mkdir zsh-interactive-cd
+sudo mkdir zsh-sudo
+sudo mkdir zsh-interactive-cd
 
 cd /home/$username/Downloads
 wget https://raw.githubusercontent.com/mrjohannchang/zsh-interactive-cd/master/zsh-interactive-cd.plugin.zsh
@@ -116,6 +117,7 @@ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.
 
 sudo cp sudo.plugin.zsh /usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh
 sudo cp zsh-interactive-cd.plugin.zsh /usr/share/zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+
 rm sudo.plugin.zsh zsh-interactive-cd.plugin.zsh
 cd
 
@@ -159,6 +161,10 @@ echo -e "\n------------------------------Autostart scripts----------------------
 cd $working_directory
 cp -r Autostart /home/$username
 mv /home/$username/Autostart/lean-conky-config/local2.conf /home/$username/Autostart/lean-conky-config/local.conf
+mv /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh
+mv /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh
+
+sudo chmod +x /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh
 cd
 
 #Wallpapers and icons
@@ -181,14 +187,16 @@ sudo ./FoxitReader.enu.setup.2.4.5.0727\(rb70e8df\).x64.run
 rm FoxitReader.enu.setup.2.4.5.0727\(rb70e8df\).x64.run
 cd
 
-#Cyberchef
-echo -e "\n------------------------------Cyberchef------------------------------"
+#Scripts
+echo -e "\n------------------------------Scripts------------------------------"
 
 cd $working_directory
-sudo chmod +x Scripts/cyberchef.sh
-sudo mkdir /opt/cyberchef && sudo cp Scripts/cyberchef.sh /opt/cyberchef/cyberchef
+sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh
+sudo mkdir /opt/scripts
+sudo cp Scripts/clean_assignment_name.sh /opt/scripts/clean_assignment_name.sh
+sudo cp Scripts/organize_submissions.sh /opt/scripts/organize_submissions.sh
+sudo cp Scripts/unzip_submissions.sh /opt/scripts/unzip_submissions.sh
 cd
-
 
 #Enable services
 echo -e "\n------------------------------Enable services------------------------------"
@@ -310,6 +318,7 @@ sudo updatedb                                                                   
 
 #Mp3DownTagger
 echo -e "\n------------------------------Mp3DownTagger------------------------------"
+
 cd /home/$username/Downloads
 git clone https://github.com/Tony450/Mp3DownTagger
 cd Mp3DownTagger/Installer/GNU\ Linux
@@ -319,10 +328,22 @@ cd .. && sudo rm -r Mp3DownTagger
 cd
 
 #UFW
+echo -e "\n------------------------------UFW------------------------------"
+
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
 sudo systemctl enable ufw && sudo systemctl start ufw
+
+#Pkgfile
+echo -e "\n------------------------------Pkgfile------------------------------"
+
+sudo pkgfile --update
+
+#CVEchecker
+echo -e "\n------------------------------CVEchecker------------------------------"
+
+sudo echo -e "[Users]\nHideUsers=cvechecker" | sudo tee /etc/sddm.conf > /dev/null
 
 #Password timeout
 echo -e "\n------------------------------Password timeout------------------------------"

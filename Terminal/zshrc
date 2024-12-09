@@ -76,10 +76,16 @@ alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias cat='bat'
+alias cyberchef='google-chrome-stable /usr/share/webapps/cyberchef/index.html'
+alias whatismyip='host -4 myip.opendns.com resolver1.opendns.com | tail -n 1 | awk '\''{print $4}'\'''
+alias whatismydistro='hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs'
+alias whatismydistrokernel='echo "$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs) $(uname -r)"'
+alias systemdependencies='for package in $(pacman -Q | awk '\''{print $1}'\''); do echo -e "------------------------------$package------------------------------"; pacman -Si $package; done'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Plugins
+source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh
@@ -158,9 +164,7 @@ neofetch
 
 
 export PATH=$PATH:/opt/miktex/bin/
-export PATH=$PATH:/opt/cyberchef/
+export PATH=$PATH:/opt/scripts/
 export PATH=$PATH:~/.local/bin
 export Mp3DownTagger=/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Mp3DownTagger/
-
-
