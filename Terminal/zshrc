@@ -12,7 +12,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-
+ZSH=/usr/share/oh-my-zsh/
 
 # Fix the Java Problem
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -88,8 +88,24 @@ alias systemdependencies='for package in $(pacman -Q | awk '\''{print $1}'\''); 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh
-source /usr/share/zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+
+plugins=(
+	sudo
+	zsh-interactive-cd
+	web-search
+	copypath
+	copyfile
+	copybuffer
+	dirhistory
+	jsontools
+)
+
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
+
+source $ZSH/oh-my-zsh.sh
 
 # Functions
 function mkt(){
@@ -152,8 +168,6 @@ function rmk(){
 # Finalize Powerlevel10k instant prompt. Should stay at the bottom of ~/.zshrc.
 (( ! ${+functions[p10k-instant-prompt-finalize]} )) || p10k-instant-prompt-finalize
 
-
-
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^[[3~" delete-char
@@ -162,9 +176,9 @@ bindkey "^[[1;5D" backward-word
 
 neofetch
 
-
 export PATH=$PATH:/opt/miktex/bin/
 export PATH=$PATH:/opt/scripts/
 export PATH=$PATH:~/.local/bin
 export Mp3DownTagger=/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Mp3DownTagger/
+export PATH=$PATH:/opt/Steganography/
