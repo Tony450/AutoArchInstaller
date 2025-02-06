@@ -37,6 +37,8 @@ ln -sf /usr/share/zoneinfo/Europe/Dublin /etc/localtime                         
 
 hwclock --systohc                                                                                       #Set the Hardware clock from the System Clock
 
+timedatectl set-local-rtc 1 --adjust-system-clock                                                       #To avoid time issues when changing to Windows
+
 sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen                                    #Enable sudo privilege to the wheel group
 
 locale-gen                                                                                              #Generate the locales

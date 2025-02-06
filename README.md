@@ -84,7 +84,9 @@ cfdisk /dev/sdX                                                                 
 
 fdisk /dev/sdX -l                                                                                   #Take a look at the recently created partitions
 
+###############Only in case there is no other operating system already installed
 mkfs.fat -F32 /dev/sdX1                                                                             #Format the EFI partition
+###############Only in case there is no other operating system already installed
 
 mkfs.ext4 /dev/sdX2                                                                                 #Format the EXT4 partition (root)
 
