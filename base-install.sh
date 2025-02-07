@@ -89,7 +89,7 @@ echo -e "\n------------------------------Bootloader-----------------------------
 
 mkdir /boot/efi && mount /dev/$efi_partition_name /boot/efi                                             #Create an EFI directory and mount the EFI partition
 
-grub-install --target=x86_64-efi --bootloader-id=arch_linux                                             #Install grub in the newly mounted EFI partition
+grub-install --target=x86_64-efi --bootloader-id=Arch_Linux                                             #Install grub in the newly mounted EFI partition
 
 sed -i -e 's/#GRUB_DISABLE_OS_PROBER/GRUB_DISABLE_OS_PROBER/g' /etc/default/grub                        #Enable OS prober
 sed -i -e 's/#GRUB_DISABLE_SUBMENU/GRUB_DISABLE_SUBMENU/g' /etc/default/grub                            #Disable grub submenu
