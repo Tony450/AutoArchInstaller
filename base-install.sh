@@ -29,6 +29,7 @@ if [[ $username == "" || $hostname == ""  || $efi_partition_name == "" ]]; then
     exit
 fi
 
+username=$(echo $username | tr '[A-Z]' '[a-z]')
 
 #Clock and time zone
 echo -e "------------------------------Clock, time zone and languages------------------------------"

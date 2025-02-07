@@ -95,7 +95,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur plasma-dialer-git vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage rar enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor $no_confirmation #activitywatch-bin? softmaker-office-2024-bin python-pynvml
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage rar enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor $no_confirmation #activitywatch-bin? softmaker-office-2024-bin python-pynvml
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -151,8 +151,6 @@ echo -e "\n------------------------------Autostart scripts----------------------
 cd $working_directory
 cp -r Autostart /home/$username
 mv /home/$username/Autostart/lean-conky-config/local2.conf /home/$username/Autostart/lean-conky-config/local.conf
-mv /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh
-mv /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh
 
 sudo chmod +x /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh
 cd
@@ -293,17 +291,7 @@ fi
 #Informant
 echo -e "\n------------------------------Informant------------------------------"
 
-paru -S informant $no_confirmation
-
-#Nvchad
-echo -e "\n------------------------------Nvchad------------------------------"
-
-cd /home/$username/Downloads
-git clone https://github.com/NvChad/starter /home/$username/.config/nvim && nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
-sudo git clone https://github.com/NvChad/starter /root/.config/nvim && sudo nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
-cd
-
-sudo updatedb                                                                                                           #For locate command to work
+paru -S informant $no_confirmation                                                                                                    #For locate command to work
 
 #Mp3DownTagger
 echo -e "\n------------------------------Mp3DownTagger------------------------------"
@@ -313,7 +301,7 @@ git clone https://github.com/Tony450/Mp3DownTagger
 cd Mp3DownTagger/Installer/GNU\ Linux
 chmod +x install.sh
 ./install.sh
-cd .. && sudo rm -r Mp3DownTagger
+cd ../.. && sudo rm -r Mp3DownTagger
 cd
 
 #UFW
@@ -337,7 +325,7 @@ sudo echo -e "[Users]\nHideUsers=cvechecker" | sudo tee /etc/sddm.conf > /dev/nu
 #Steganography
 echo -e "\n------------------------------Steganography------------------------------"
 
-sudo pacman -S virtualenv
+sudo pacman -S python-virtualenv
 paru -S python312
 
 cd /opt
@@ -348,8 +336,11 @@ cd Steganography
 sudo mv * ..
 cd ..
 sudo rm -r Steganography
+sudo cp /home/$username/Downloads/AutoArchInstaller/Scripts/Steganography .
+sudo chown -R $username:$username ./*
+sudo chmod +x Steganography
 source bin/activate
-sudo pip install argparse Wave opencv-python numpy Pillow pytest-shutil subprocess.run stegano
+pip install argparse Wave opencv-python numpy Pillow pytest-shutil subprocess.run stegano
 deactivate
 cd
 
@@ -362,6 +353,16 @@ echo -e "\n------------------------------Printer drivers------------------------
 sudo pacman -S cups hplip system-config-printer
 sudo systemctl enable cups && sudo systemctl start cups
 sudo hp-setup -i
+
+#Nvchad
+echo -e "\n------------------------------Nvchad------------------------------"
+
+cd /home/$username/Downloads
+git clone https://github.com/NvChad/starter /home/$username/.config/nvim && nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
+sudo git clone https://github.com/NvChad/starter /root/.config/nvim && sudo nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
+cd
+
+sudo updatedb       
 
 #Password timeout
 echo -e "\n------------------------------Password timeout------------------------------"
