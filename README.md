@@ -51,7 +51,9 @@ NOTES:
 - The first usage on the software-install script allows you to log both the standard and the error output to a single file, while the second usage allows you to log each output to a different file.
 - Shared folders will be located in /mnt/hgfs directory.
 - The troubleshooting-install script must be run after a restart, otherwise it won't work.
-
+- It is recommended to deactivate the sleep mode and the lock screen options to avoid problems during the installation process.
+- Sometimes the names of the packages can change or they are not available anymore (those from AUR and those from the official repositories as well). Therefore, it is recommended to test the scripts on a virtual machine first and analyze deeply all the logs to check whether there are errors or not. 
+- Initialize the nvidia_drivers variable with `true` or with `"true"` to install the drivers required by Nvidia GPUs. If you have a different graphics card than me, the driver that I am installing may not be appropriate for you, therefore, I suggest you to investigate what driver you need exactly depending on what graphics card you have and then modify the Nvidia drivers section according to your needs. If you don't want to install these drivers, initialize the variable with `false` or with `"false"`.
 
 ## Commands to be run
 

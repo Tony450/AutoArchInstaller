@@ -26,8 +26,9 @@ no_confirmation="--noconfirm"
 working_directory=$(pwd)
 git_user_name=""
 git_user_email=""
+nvidia_drivers=""
 
-if [[ $git_user_name == ""  || $git_user_email == "" ]]; then
+if [[ $git_user_name == ""  || $git_user_email == "" || $nvidia_drivers == "" ]]; then
     echo "Initialize the required data first"
     exit
 fi
@@ -73,7 +74,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib copyq kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib copyq kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar $no_confirmation
 
 
 
@@ -95,7 +96,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage rar enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor $no_confirmation #activitywatch-bin? softmaker-office-2024-bin python-pynvml
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -288,11 +289,6 @@ if [[ ! ${powerlevel10k_installation} ]]; then
     paru -S zsh-theme-powerlevel10k-git $no_confirmation
 fi
 
-#Informant
-echo -e "\n------------------------------Informant------------------------------"
-
-paru -S informant $no_confirmation                                                                                                    #For locate command to work
-
 #Mp3DownTagger
 echo -e "\n------------------------------Mp3DownTagger------------------------------"
 
@@ -325,7 +321,7 @@ sudo echo -e "[Users]\nHideUsers=cvechecker" | sudo tee /etc/sddm.conf > /dev/nu
 #Steganography
 echo -e "\n------------------------------Steganography------------------------------"
 
-sudo pacman -S python-virtualenv
+sudo pacman -S python-virtualenv $no_confirmation
 paru -S python312
 
 cd /opt
@@ -336,23 +332,44 @@ cd Steganography
 sudo mv * ..
 cd ..
 sudo rm -r Steganography
-sudo cp /home/$username/Downloads/AutoArchInstaller/Scripts/Steganography .
 sudo chown -R $username:$username ./*
-sudo chmod +x Steganography
 source bin/activate
 pip install argparse Wave opencv-python numpy Pillow pytest-shutil subprocess.run stegano
 deactivate
+sudo echo -e '#!/bin/bash\n\nsudo /opt/Steganography/bin/python3.12 /opt/Steganography/Steganography.py $1 $2 $3' | sudo tee Steganography > /dev/null
+sudo chmod +x Steganography
 cd
 
-sudo echo -e '#!/bin/bash\n\nsudo /opt/Steganography/bin/python3.12 /opt/Steganography/Steganography.py $1 $2 $3' | sudo tee /opt/Steganography/Steganography > /dev/null
-sudo chmod +x Steganography
 
 #Printer drivers
 echo -e "\n------------------------------Printer drivers------------------------------"
 
-sudo pacman -S cups hplip system-config-printer
+sudo pacman -S cups hplip system-config-printer $no_confirmation
 sudo systemctl enable cups && sudo systemctl start cups
 sudo hp-setup -i
+
+#XFCE desktop
+echo -e "\n------------------------------XFCE desktop------------------------------"
+
+sudo pacman -S xfce4 xfce4-goodies $no_confirmation
+
+#Nvidia drivers
+echo -e "\n------------------------------Nvidia drivers------------------------------"
+
+if [[ $nvidia_drivers = true || $nvidia_drivers = "true" ]]; then
+
+    sudo pacman -S nvidia nvidia-lts nvidia-settings $no_confirmation
+    sudo echo -e '#!/bin/bash\nnvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=35" -c :0\nnvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:1]/GPUTargetFanSpeed=35" -c :0' | sudo tee /usr/local/sbin/nvidia_fans.sh > /dev/null
+    chmod 700 /usr/local/sbin/nvidia_fans.sh
+    sudo echo -e '[Unit]\nDescription=Start the fans of Nvidia GPU\n[Service]\nExecStart=/usr/local/sbin/nvidia_fans.sh\n[Install]\nWantedBy=multi-user.target' | sudo tee /etc/systemd/system/nvidia_fans.service > /dev/null
+    sudo systemctl enable nvidia_fans.service && sudo systemctl start nvidia_fans.service
+
+fi
+
+#Informant
+echo -e "\n------------------------------Informant------------------------------"
+
+paru -S informant $no_confirmation
 
 #Nvchad
 echo -e "\n------------------------------Nvchad------------------------------"

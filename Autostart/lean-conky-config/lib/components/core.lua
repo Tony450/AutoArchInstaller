@@ -57,7 +57,7 @@ end
 -- section title
 lcc.tpl.section = [[
 ${color1}${voffset $sr{-2}}${lua font icon {{%= icon %} ${voffset $sr{-1}}} {}}#
-${lua font h1 {{%= title %}}} ${hr $sr{1}}${color}${voffset $sr{5}}]]
+${lua font h1 {{%= title %}}} ${hr $sr{1}}${color}${voffset $sr{0}}]]
 function core.section(title, icon)
     return lcc.tpl.section { title = title, icon = icon }
 end
