@@ -81,6 +81,7 @@ alias whatismyip='host -4 myip.opendns.com resolver1.opendns.com | tail -n 1 | a
 alias whatismydistro='hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs'
 alias whatismydistrokernel='echo "$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs) $(uname -r)"'
 alias systemdependencies='for package in $(pacman -Q | awk '\''{print $1}'\''); do echo -e "------------------------------$package------------------------------"; pacman -Si $package; done'
+alias sortpackagesbysize="expac -H M '%m\t%n' | sort -h"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
