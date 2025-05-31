@@ -74,7 +74,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib copyq kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib copyq kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac openshot docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema ollama $no_confirmation
 
 
 
@@ -96,7 +96,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -198,6 +198,7 @@ sudo systemctl enable pcscd.service && sudo systemctl start pcscd.service
 sudo systemctl enable vmware-networks.service && sudo systemctl start vmware-networks.service
 sudo systemctl enable vmware-usbarbitrator.service && sudo systemctl start vmware-usbarbitrator.service
 sudo systemctl enable iwd.service && sudo systemctl start iwd.service
+sudo systemctl start docker && sudo systemctl enable docker
 
 #Flathub: ZapZap and Paper Clip
 echo -e "\n------------------------------Flathub: ZapZap and Paper Clip------------------------------"
@@ -366,6 +367,11 @@ if [[ $nvidia_drivers = true || $nvidia_drivers = "true" ]]; then
     sudo systemctl enable nvidia_fans.service && sudo systemctl start nvidia_fans.service
 
 fi
+
+#Docker configuration
+echo -e "\n------------------------------Docker configuration------------------------------"
+
+sudo usermod -aG docker $USER
 
 #Informant
 echo -e "\n------------------------------Informant------------------------------"
