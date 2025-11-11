@@ -183,3 +183,4 @@ export PATH=$PATH:~/.local/bin
 export Mp3DownTagger=/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Steganography/
+export PATH=$PATH:/opt/cuda/bin/

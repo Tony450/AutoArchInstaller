@@ -23,8 +23,9 @@ username=""
 hostname=""
 efi_partition_name=""
 no_confirmation="--noconfirm"
+change_windows_clock_configuration=""
 
-if [[ $username == "" || $hostname == ""  || $efi_partition_name == "" ]]; then
+if [[ $username == "" || $hostname == ""  || $efi_partition_name == "" || $change_windows_clock_configuration == "" ]]; then
     echo "Initialize the required data first"
     exit
 fi
@@ -34,82 +35,85 @@ username=$(echo $username | tr '[A-Z]' '[a-z]')
 #Clock and time zone
 echo -e "------------------------------Clock, time zone and languages------------------------------"
 
-ln -sf /usr/share/zoneinfo/Europe/Dublin /etc/localtime                                                 #Configure the time zone
+ln -sf /usr/share/zoneinfo/Europe/Dublin /etc/localtime                                                                             #Configure the time zone
 
-hwclock --systohc                                                                                       #Set the Hardware clock from the System Clock
+hwclock --systohc                                                                                                                   #Set the Hardware clock from the System Clock
 
-timedatectl set-local-rtc 1 --adjust-system-clock                                                       #To avoid time issues when changing to Windows
+if [[ $change_windows_clock_configuration = true || $change_windows_clock_configuration == "true" ]]; then
+    timedatectl set-local-rtc 0 --adjust-system-clock                                                                               #It avoids time issues with daylight saving time or time zone changes but it requires to force Windows to treat the hardware clock as UTC instead of local time
+else
+    timedatectl set-local-rtc 1 --adjust-system-clock                                                                               #It avoids time issues when changing to Windows
+fi
 
-sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen                                    #Enable sudo privilege to the wheel group
+sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen                                                                #Enable sudo privilege to the wheel group
 
-locale-gen                                                                                              #Generate the locales
+locale-gen                                                                                                                          #Generate the locales
 
-echo "LANG=en_US.UTF-8" > /etc/locale.conf                                                              #Specify which language will be used by default
+echo "LANG=en_US.UTF-8\nLC_TIME=en_GB.UTF-8" > /etc/locale.conf                                                                     #Specify which language will be used by default
 
-echo "KEYMAP=es" > /etc/vconsole.conf                                                                   #Specify the keyboard layout
+echo "KEYMAP=es" > /etc/vconsole.conf                                                                                               #Specify the keyboard layout
 
 #Hostname
 echo -e "\n------------------------------Hostname------------------------------"
 
-echo $hostname > /etc/hostname                                                                          #Specify the hostname
+echo $hostname > /etc/hostname                                                                                                      #Specify the hostname
 
-echo -e "127.0.0.1   localhost\n::1     localhost\n127.0.1.1   $hostname" >> /etc/hosts                 #Configure local host name resolution to some programs
+echo -e "127.0.0.1   localhost\n::1     localhost\n127.0.1.1   $hostname" >> /etc/hosts                                             #Configure local host name resolution to some programs
 
 #Network
 echo -e "\n------------------------------Network------------------------------"
 
-systemctl enable NetworkManager                                                                         #Enable NetworkManager service
+systemctl enable NetworkManager                                                                                                     #Enable NetworkManager service
 
 #Users
 echo -e "\n------------------------------Users------------------------------"
 
 echo "Type the root password"
 
-passwd                                                                                                  #Set the root password
+passwd                                                                                                                              #Set the root password
 
-useradd -m -G wheel $username                                                                           #Create a non-root user
+useradd -m -G wheel $username                                                                                                       #Create a non-root user
 
 echo "Type the $username password"
 
-passwd $username                                                                                        #Set the password of the non-root user
+passwd $username                                                                                                                    #Set the password of the non-root user
 
-sed -i -e "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g" /etc/sudoers                        #Enable sudo privilege to the wheel group
+sed -i -e "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g" /etc/sudoers                                                    #Enable sudo privilege to the wheel group
 
 #Base software 1
 echo -e "\n------------------------------Base software 1------------------------------"
 
 pacman -Syy
 
-pacman -S intel-ucode $no_confirmation                                                                  #Install Intel microcode
+pacman -S intel-ucode $no_confirmation                                                                                              #Install Intel microcode
 
-pacman -S grub efibootmgr os-prober $no_confirmation                                                    #Install grub bootloader
+pacman -S grub efibootmgr os-prober $no_confirmation                                                                                #Install grub bootloader
 
 #Bootloader
 echo -e "\n------------------------------Bootloader------------------------------"
 
-mkdir /boot/efi && mount /dev/$efi_partition_name /boot/efi                                             #Create an EFI directory and mount the EFI partition
+mkdir /boot/efi && mount /dev/$efi_partition_name /boot/efi                                                                         #Create an EFI directory and mount the EFI partition
 
-grub-install --target=x86_64-efi --bootloader-id=Arch_Linux                                             #Install grub in the newly mounted EFI partition
+grub-install --target=x86_64-efi --bootloader-id=Arch_Linux                                                                         #Install grub in the newly mounted EFI partition
 
-sed -i -e 's/#GRUB_DISABLE_OS_PROBER/GRUB_DISABLE_OS_PROBER/g' /etc/default/grub                        #Enable OS prober
-sed -i -e 's/#GRUB_DISABLE_SUBMENU/GRUB_DISABLE_SUBMENU/g' /etc/default/grub                            #Disable grub submenu
-sed -i -e 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub                                         #Set GRUB_TIMEOUT=0
+sed -i -e 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=true/g' /etc/default/grub                                         #Disable OS prober
+sed -i -e 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=10/g' /etc/default/grub                                                                    #Set GRUB_TIMEOUT=10
 
-grub-mkconfig -o /boot/grub/grub.cfg                                                                    #Generate grub configuration file
+grub-mkconfig -o /boot/grub/grub.cfg                                                                                                #Generate grub configuration file
 
 #Base software 2
 echo -e "\n------------------------------Base software 2------------------------------"
 
-pacman -S xorg-server $no_confirmation                                                                  #Install Xorg
+pacman -S xorg-server $no_confirmation                                                                                              #Install Xorg
 
-pacman -S xf86-video-intel nvidia nvidia-utils $no_confirmation                                         #Install  Intel and Nvidia graphics drivers
+pacman -S xf86-video-intel nvidia nvidia-utils $no_confirmation                                                                     #Install Intel and Nvidia graphics drivers
 
-pacman -S plasma plasma-workspace $no_confirmation                                                      #Install plasma desktop environment
+pacman -S plasma plasma-workspace $no_confirmation                                                                                  #Install plasma desktop environment
 
 #Display manager
 echo -e "\n------------------------------Display manager------------------------------"
 
-systemctl enable sddm                                                                                   #Enable the plasma display manager
+systemctl enable sddm                                                                                                               #Enable the plasma display manager
 
 #Upgrade
 echo -e "\n------------------------------Upgrade------------------------------"

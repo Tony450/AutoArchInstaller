@@ -27,8 +27,9 @@ working_directory=$(pwd)
 git_user_name=""
 git_user_email=""
 nvidia_drivers=""
+grub_personalize_grub_entries=""
 
-if [[ $git_user_name == ""  || $git_user_email == "" || $nvidia_drivers == "" ]]; then
+if [[ $git_user_name == ""  || $git_user_email == "" || $nvidia_drivers == "" || $grub_personalize_grub_entries == "" ]]; then
     echo "Initialize the required data first"
     exit
 fi
@@ -74,7 +75,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema ollama $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver $no_confirmation
 
 
 
@@ -124,7 +125,7 @@ echo -e "\n------------------------------Hibernation----------------------------
 # sudo hibernator
 sudo sed -i -e 's/modconf kms keyboard/modconf resume kms keyboard/g' /etc/mkinitcpio.conf
 uuid=$( cat /etc/fstab | grep swap | cut -f 1); beginning="s/quiet/quiet splash resume=";end="/g"; sudo sed -i -e "${beginning}${uuid}${end}" /etc/default/grub
-sudo mkinitcpio -p linux
+sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 
@@ -154,6 +155,26 @@ cp -r Autostart /home/$username
 mv /home/$username/Autostart/lean-conky-config/local2.conf /home/$username/Autostart/lean-conky-config/local.conf
 
 sudo chmod +x /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh
+cd
+
+#Grub configuration
+echo -e "\n------------------------------Grub configuration------------------------------"
+
+cd $working_directory
+
+if [[ $grub_personalize_grub_entries = true || $grub_personalize_grub_entries = "true" ]]; then
+
+    sudo cp Scripts/25_custom /etc/grub.d/
+    efi_partition_uuid=$( lsblk -o NAME,UUID,FSTYPE,MOUNTPOINT | grep 'vfat' | grep -i 'efi' | awk '{print $2}' );
+    sudo sed -i "s/XXXX-XXXX/$efi_partition_uuid/" /etc/grub.d/25_custom
+    sudo chmod +x /etc/grub.d/25_custom
+
+fi
+
+cd Wallpapers/Grub/earth-and-moon-grub-theme
+sudo chmod +x install.sh
+sudo ./install.sh
+
 cd
 
 #Wallpapers and icons
@@ -307,6 +328,8 @@ echo -e "\n------------------------------UFW------------------------------"
 
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
+sudo ufw allow 1714:1764/tcp                                                                                            #KDE connect
+sudo ufw allow 1714:1764/udp                                                                                            #KDE connect
 sudo ufw enable
 sudo systemctl enable ufw && sudo systemctl start ufw
 
@@ -372,6 +395,23 @@ fi
 echo -e "\n------------------------------Docker configuration------------------------------"
 
 sudo usermod -aG docker $USER
+
+#Artificial Intelligence
+echo -e "\n------------------------------Artificial Intelligence------------------------------"
+
+if [[ $nvidia_drivers = true || $nvidia_drivers = "true" ]]; then
+    sudo pacman -S ollama-cuda
+else
+    sudo pacman -S ollama
+fi
+
+sudo pacman -S cuda python-huggingface-hub
+
+sudo echo -e '[Unit]\nDescription=Ollama Service\nAfter=network.target\n\n[Service]\nExecStart=/usr/bin/ollama serve\nRestart=always\nUser=tony450\nEnvironment=PATH=/usr/bin:/bin\n\n[Install]\nWantedBy=multi-user.target' | sudo tee /etc/systemd/system/ollama.service > /dev/null
+
+sudo systemctl enable ollama.service && sudo systemctl start ollama.service
+
+docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 
 #Informant
 echo -e "\n------------------------------Informant------------------------------"

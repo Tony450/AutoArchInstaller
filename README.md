@@ -54,6 +54,10 @@ NOTES:
 - It is recommended to deactivate the sleep mode and the lock screen options to avoid problems during the installation process.
 - Sometimes the names of the packages can change or they are not available anymore (those from AUR and those from the official repositories as well). Therefore, it is recommended to test the scripts on a virtual machine first and analyze deeply all the logs to check whether there are errors or not. 
 - Initialize the nvidia_drivers variable with `true` or with `"true"` to install the drivers required by Nvidia GPUs. If you have a different graphics card than me, the driver that I am installing may not be appropriate for you, therefore, I suggest you to investigate what driver you need exactly depending on what graphics card you have and then modify the Nvidia drivers section according to your needs. If you don't want to install these drivers, initialize the variable with `false` or with `"false"`.
+- To avoid time issues in dual boot machines, you have two different options:
+    - Set the hardware clock to be in local time instead of UTC on Arch Linux `sudo timedatectl set-local-rtc 1` and do nothing on Windows.
+    - Set the hardware clock to be in UTC instead of local time on Arch Linux `sudo timedatectl set-local-rtc 0` and force Windows to treat the hardware clock as UTC instead of local time by modifying the registry `\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\RealTimeIsUniversal=1`. This option is preferable because in this way Arch Linux will not have issues with daylight saving time or time zone changes.
+- Grub OS-prober is disabled, that is why the `25_custom` script has been created. This script personalizes Microsoft Windows meny entry. It is worh mentioning that you can do the same without disabling grub OS prober by editing /boot/grub/grub.cfg file, however take into account that this file will be overwritten on every grub update that you perform, therefore it will delete your modifications.
 
 ## Commands to be run
 
@@ -156,4 +160,5 @@ Licensed under the [GPL license](LICENSE.txt).
 
 Conky theme made by [jxai](https://github.com/jxai) from https://github.com/jxai/lean-conky-config.
 
+Grub theme made by [Hashir Sajid](https://github.com/hashirsajid58200p) from https://github.com/hashirsajid58200p/earth-and-moon-grub-theme.
 
