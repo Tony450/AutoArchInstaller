@@ -75,7 +75,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq $no_confirmation
 
 
 
@@ -97,7 +97,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -219,7 +219,12 @@ sudo systemctl enable pcscd.service && sudo systemctl start pcscd.service
 sudo systemctl enable vmware-networks.service && sudo systemctl start vmware-networks.service
 sudo systemctl enable vmware-usbarbitrator.service && sudo systemctl start vmware-usbarbitrator.service
 sudo systemctl enable iwd.service && sudo systemctl start iwd.service
-sudo systemctl start docker && sudo systemctl enable docker
+sudo systemctl enable docker && sudo systemctl start docker
+sudo systemctl enable grafana.service && sudo systemctl start grafana.service
+sudo systemctl enable prometheus && sudo systemctl start prometheus
+sudo systemctl enable prometheus-node-exporter && sudo systemctl start prometheus-node-exporter
+sudo systemctl enable alertmanager && sudo systemctl start alertmanager
+sudo systemctl enable sshd && sudo systemctl start sshd
 
 #Flathub: ZapZap and Paper Clip
 echo -e "\n------------------------------Flathub: ZapZap and Paper Clip------------------------------"
@@ -328,6 +333,7 @@ echo -e "\n------------------------------UFW------------------------------"
 
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
+sudo ufw allow ssh
 sudo ufw allow 1714:1764/tcp                                                                                            #KDE connect
 sudo ufw allow 1714:1764/udp                                                                                            #KDE connect
 sudo ufw enable
@@ -413,6 +419,156 @@ sudo systemctl enable ollama.service && sudo systemctl start ollama.service
 
 docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 
+#SSH configuration
+echo -e "\n------------------------------SSH configuration------------------------------"
+
+sudo sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i 's/^#KbdInteractiveAuthentication yes/KbdInteractiveAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i 's/^#UsePAM no/UsePAM yes/' /etc/ssh/sshd_config
+
+#ssh-keygen -t ed25519 -C ssh_id                                                                                        #On the client machine we create a ssh key
+
+#sudo nvim ~/.ssh/authorized_keys                                                                                       #On the server we have to copy the public key of the client machine (one of the files that the previous command outputted) in this file
+#chmod 600 ~/.ssh/authorized_keys
+
+#nvim ~/.ssh/config                                                                                                     #ssh remote_machine_name from the client will start the connection after creating this file on the client
+#Host remote_machine_name
+#   HostName remote_ip_addr
+#   User remote_user
+#   IdentityFile ssh_private_key_path
+#   Port 22
+
+sudo systemctl restart sshd
+
+#Grafana & Prometheus
+echo -e "\n------------------------------Grafana & Prometheus------------------------------"
+
+sudo sed -i '/# - alertmanager:9093/d' /etc/prometheus/prometheus.yml
+
+line_num=$(sudo grep -n "targets:" /etc/prometheus/prometheus.yml | head -n 1 | cut -d: -f1)
+sudo sed -i "${line_num}s/- targets:/- targets: [\"localhost:9093\"]/" /etc/prometheus/prometheus.yml
+
+echo -e '\n  - job_name: "node_exporter"\n    static_configs:\n      - targets: ["localhost:9100"]' | sudo tee -a /etc/prometheus/prometheus.yml > /dev/null
+echo -e '\n  - job_name: "dcgm_exporter"\n    static_configs:\n      - targets: ["localhost:9400"]' | sudo tee -a /etc/prometheus/prometheus.yml > /dev/null
+
+sudo mkdir /etc/prometheus/alert_rules
+sudo touch /etc/prometheus/alert_rules/cpu_rules.yml && sudo touch /etc/prometheus/alert_rules/gpu_rules.yml && sudo touch /etc/prometheus/alert_rules/memory_rules.yml
+
+printf "%s\n" \
+"groups:" \
+"  - name: cpu_alerts" \
+"    rules:" \
+"      - alert: HighCPUUsage" \
+"        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[1m])) * 100) > 90" \
+"        for: 5m" \
+"        labels:" \
+"          severity: Critical" \
+"        annotations:" \
+"          summary: \"CPU usage is high\"" \
+"          description: \"CPU usage is above 90%\"" \
+"" \
+"      - alert: HighCPUTemperature" \
+"        expr: max by (instance) (node_hwmon_temp_celsius{chip=~\".*coretemp.*\"}) > 90" \
+"        for: 5m" \
+"        labels:" \
+"          severity: Critical" \
+"        annotations:" \
+"          summary: \"High CPU temperature\"" \
+"          description: \"A CPU core temperature is above 90°C - Current temperature: {{ \$value }}°C\"" \
+| sudo tee /etc/prometheus/alert_rules/cpu_rules.yml > /dev/null
+
+printf "%s\n" \
+"groups:" \
+"  - name: gpu_alerts" \
+"    rules:" \
+"      - alert: HighGPUUsage" \
+"        expr: DCGM_FL_DEV_UTIL > 90" \
+"        for: 5m" \
+"        labels:" \
+"          severity: Critical" \
+"        annotations:" \
+"          summary: \"GPU usage is high\"" \
+"          description: \"GPU usage is above 90%\"" \
+"" \
+"      - alert: HighGPUTemperature" \
+"        expr: DCGM_FL_DEV_TEMP > 90" \
+"        for: 5m" \
+"        labels:" \
+"          severity: Critical" \
+"        annotations:" \
+"          summary: \"High GPU temperature\"" \
+"          description: \"GPU temperature exceeded 90°C - Current temperature: {{ \$value }}°C\"" \
+| sudo tee /etc/prometheus/alert_rules/gpu_rules.yml > /dev/null
+
+printf "%s\n" \
+"groups:" \
+"  - name: memory_rules" \
+"    rules:" \
+"      - alert: HighRAMUsage" \
+"        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 90" \
+"        for: 5m" \
+"        labels:" \
+"          severity: Critical" \
+"        annotations:" \
+"          summary: \"RAM usage is high\"" \
+"          description: \"RAM usage is above 90%\"" \
+"" \
+"      - alert: HighVRAMUsage" \
+"        expr: (DCGM_FI_DEV_FB_USED / DCGM_FI_DEV_FB_TOTAL) > 0.90" \
+"        for: 5m" \
+"        labels:" \
+"          severity: Critical" \
+"        annotations:" \
+"          summary: \"VRAM usage is high\"" \
+"          description: \"VRAM usage is above 90%\"" \
+| sudo tee /etc/prometheus/alert_rules/memory_rules.yml > /dev/null
+
+sudo yq -i -y 'del(.receivers)' /etc/alertmanager/alertmanager.yml
+
+sudo sed -i '1i\
+#global:\
+  #smtp_smarthost: "smtp.gmail.com:587"\
+  #smtp_from: ""\
+  #smtp_auth_username: ""\
+  #smtp_auth_password: ""\
+  #smtp_require_tls: true\
+' /etc/alertmanager/alertmanager.yml
+
+sudo sed -i "s/receiver: 'web.hook'/receiver: 'email-and-telegram'/" /etc/alertmanager/alertmanager.yml
+sudo sed -i "s/severity: critical/severity: Critical/" /etc/alertmanager/alertmanager.yml
+sudo sed -i "s/severity: warning/severity: Warning/" /etc/alertmanager/alertmanager.yml
+
+sudo sed -i '$a\
+#receivers:\
+  #- name: '\''email-and-telegram'\''\
+    #email_configs:\
+      #- to: '\'''\''\
+        #send_resolved: true\
+\
+    #telegram_configs:\
+      #- bot_token: '\'''\''\
+        #chat_id:
+        #send_resolved: true\
+        #parse_mode: '\''Markdown'\''\
+        #disable_notifications: false\
+        #message: |\
+          #{{ range .Alerts }}
+          #*Alert:* {{ .Labels.alertname }}\
+          #*Severity:* {{ .Labels.severity }}\
+          #*Summary:* {{ .Annotations.summary }}\
+          #*Description:* {{ .Annotations.description }}\
+          #{{ end }}
+' /etc/alertmanager/alertmanager.yml
+
+sudo sed -i 's/$PROMETHEUS_ARGS/$PROMETHEUS_ARGS --web.listen-address=127.0.0.1:9090/' /usr/lib/systemd/system/prometheus.service
+sudo sed -i 's/$NODE_EXPORTER_ARGS/$NODE_EXPORTER_ARGS --web.listen-address=127.0.0.1:9100/' /usr/lib/systemd/system/prometheus-node-exporter.service
+sudo sed -i 's/$ALERTMANAGER_ARGS/$ALERTMANAGER_ARGS --web.listen-address=127.0.0.1:9093/' /usr/lib/systemd/system/alertmanager.service
+sudo sed -i 's/;http_addr =/http_addr = 127.0.0.1/' /etc/grafana.ini
+
+sudo systemctl daemon-reload && sudo systemctl restart prometheus && sudo systemctl restart prometheus-node-exporter && sudo systemctl restart alertmanager && sudo systemctl restart grafana.service
+
+docker run --gpus all -p 127.0.0.1:9400:9400 --restart always --name dcgm-exporter nvidia/dcgm-exporter:latest
+
 #Informant
 echo -e "\n------------------------------Informant------------------------------"
 
@@ -426,7 +582,7 @@ git clone https://github.com/NvChad/starter /home/$username/.config/nvim && nvim
 sudo git clone https://github.com/NvChad/starter /root/.config/nvim && sudo nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
 cd
 
-sudo updatedb       
+sudo updatedb
 
 #Password timeout
 echo -e "\n------------------------------Password timeout------------------------------"
