@@ -28,8 +28,9 @@ git_user_name=""
 git_user_email=""
 nvidia_drivers=""
 grub_personalize_grub_entries=""
+sync_timezone=""
 
-if [[ $git_user_name == ""  || $git_user_email == "" || $nvidia_drivers == "" || $grub_personalize_grub_entries == "" ]]; then
+if [[ $git_user_name == ""  || $git_user_email == "" || $nvidia_drivers == "" || $grub_personalize_grub_entries == "" || $sync_timezone == "" ]]; then
     echo "Initialize the required data first"
     exit
 fi
@@ -75,7 +76,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot knights kreversi ksudoku kblocks ksnakeduel $no_confirmation
 
 
 
@@ -97,7 +98,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty qcheckers $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -201,11 +202,19 @@ cd
 echo -e "\n------------------------------Scripts------------------------------"
 
 cd $working_directory
-sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh
+sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh Scripts/convert_image_2_pdf.sh Scripts/sync_timezone.sh
 sudo mkdir /opt/scripts
 sudo cp Scripts/clean_assignment_name.sh /opt/scripts/clean_assignment_name.sh
 sudo cp Scripts/organize_submissions.sh /opt/scripts/organize_submissions.sh
 sudo cp Scripts/unzip_submissions.sh /opt/scripts/unzip_submissions.sh
+sudo cp Scripts/convert_image_2_pdf.sh /opt/scripts/convert_image_2_pdf.sh
+sudo cp Scripts/sync_timezone.sh /opt/scripts/sync_timezone.sh
+
+if [[ $sync_timezone = true || $sync_timezone = "true" ]]; then
+    echo "* * * * * root /opt/scripts/sync_timezone.sh" | sudo tee /etc/cron.d/sync-timezone > /dev/null
+    sudo chmod 644 /etc/cron.d/sync-timezone
+fi
+
 cd
 
 #Enable services
@@ -231,6 +240,7 @@ echo -e "\n------------------------------Flathub: ZapZap and Paper Clip---------
 
 flatpak install flathub com.rtosta.zapzap --assumeyes
 flatpak install flathub io.github.diegoivan.pdf_metadata_editor --assumeyes
+flatpak install flathub net.sourceforge.scidvspc.scidvspc --assumeyes
 
 
 #Modern CSV
