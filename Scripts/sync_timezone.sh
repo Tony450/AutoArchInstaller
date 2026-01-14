@@ -8,10 +8,10 @@ if [[ "$hotstpot" == *"yes"* ]]; then
     exit 0
 fi
 
-local_time_zone=$(timedatectl show -p Timezone --value)
-time_zone=$(curl -s https://ipapi.co/timezone)
+local_timezone=$(timedatectl show -p Timezone --value)
+timezone=$(curl -s https://ipapi.co/timezone)
 
 # Update if they are not they same
-if [ -n "$time_zone" ] && [ "$time_zone" != "$local_time_zone" ]; then
-    sudo timedatectl set-timezone "$time_zone"
+if [ -n "$timezone" ] && [ "$timezone" != "$local_timezone" ]; then
+    sudo timedatectl set-timezone "$timezone"
 fi

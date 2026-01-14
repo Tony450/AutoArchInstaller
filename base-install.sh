@@ -24,18 +24,25 @@ hostname=""
 efi_partition_name=""
 no_confirmation="--noconfirm"
 change_windows_clock_configuration=""
+timezone=""
 
-if [[ $username == "" || $hostname == ""  || $efi_partition_name == "" || $change_windows_clock_configuration == "" ]]; then
+if [[ $username == "" || $hostname == ""  || $efi_partition_name == "" || $change_windows_clock_configuration == "" || $timezone == "" ]]; then
     echo "Initialize the required data first"
     exit
 fi
 
 username=$(echo $username | tr '[A-Z]' '[a-z]')
+available_timezones=$(find /usr/share/zoneinfo -mindepth 2 -type f | grep -vE '/right|Etc|posix/' | sed 's|^/usr/share/zoneinfo/||')
+
+if [[ "$available_timezones" != *"$timezone"* ]]; then
+    echo "Initialize the timezone variable with a valid time zone. Available time zones are in /usr/share/zoneinfo"
+    exit
+fi
 
 #Clock and time zone
 echo -e "------------------------------Clock, time zone and languages------------------------------"
 
-ln -sf /usr/share/zoneinfo/Europe/Dublin /etc/localtime                                                                             #Configure the time zone
+ln -sf "/usr/share/zoneinfo/$timezone" /etc/localtime                                                                       #Configure the time zone
 
 hwclock --systohc                                                                                                                   #Set the Hardware clock from the System Clock
 
