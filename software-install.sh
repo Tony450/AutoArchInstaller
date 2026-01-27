@@ -98,7 +98,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty qcheckers $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git 4kvideodownloader megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -235,12 +235,13 @@ sudo systemctl enable prometheus-node-exporter && sudo systemctl start prometheu
 sudo systemctl enable alertmanager && sudo systemctl start alertmanager
 sudo systemctl enable sshd && sudo systemctl start sshd
 
-#Flathub: ZapZap and Paper Clip
-echo -e "\n------------------------------Flathub: ZapZap and Paper Clip------------------------------"
+#Flathub programs
+echo -e "\n------------------------------Flathub programs------------------------------"
 
 flatpak install flathub com.rtosta.zapzap --assumeyes
 flatpak install flathub io.github.diegoivan.pdf_metadata_editor --assumeyes
 flatpak install flathub net.sourceforge.scidvspc.scidvspc --assumeyes
+flatpak install flathub io.github.tobagin.Draughts --assumeyes
 
 
 #Modern CSV
