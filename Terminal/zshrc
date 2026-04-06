@@ -113,6 +113,52 @@ function mkt(){
 	mkdir {nmap,content,exploits,scripts}
 }
 
+function yt-dlp-mp4() {
+    local common_opts=(
+        --cookies-from-browser chrome
+        --impersonate chrome
+        --remote-components ejs:github
+        --sleep-requests 2
+        --sleep-interval 5
+        --write-subs --write-auto-subs --sub-langs "en.*,es.*"
+        --embed-subs --embed-metadata --embed-chapters
+        # This tells ffmpeg to ensure the output is standard H.264 MP4
+        --recode-video mp4
+    )
+
+    # We ask for the best video, regardless of codec, 
+    # and let --recode-video fix it for MP4 compatibility.
+    local format_selection="bestvideo+bestaudio/best"
+
+    if [ -z "$2" ]; then
+        /home/tony450/.local/bin/yt-dlp "${common_opts[@]}" \
+        -f "$format_selection" \
+        -o "%(title)s.%(ext)s" "$1"
+    else
+        /home/tony450/.local/bin/yt-dlp "${common_opts[@]}" \
+        -f "$format_selection" \
+        -o "$1.%(ext)s" "$2"
+    fi
+
+    rm *.vtt
+}
+
+function yt-dlp-mp3() {
+    # If the second argument ($2) is empty...
+    if [ -z "$2" ]; then
+        # Use the first argument as the URL and keep the original title
+        /home/tony450/.local/bin/yt-dlp --impersonate chrome \
+        --sleep-requests 2 --sleep-interval 5 \
+        --cookies-from-browser chrome -x --audio-format mp3 --audio-quality 0 -o "%(title)s.%(ext)s" "$1"
+    else
+        # Use the first argument as the custom name and the second as the URL
+        /home/tony450/.local/bin/yt-dlp --impersonate chrome \
+        --sleep-requests 2 --sleep-interval 5 \
+        --cookies-from-browser chrome -x --audio-format mp3 --audio-quality 0 -o "$1.%(ext)s" "$2"
+    fi
+}
+
+
 # Extract nmap information
 function extractPorts(){
 	ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
@@ -184,3 +230,4 @@ export Mp3DownTagger=/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Steganography/
 export PATH=$PATH:/opt/cuda/bin/
+export PATH=$PATH:/var/lib/snapd/snap/bin

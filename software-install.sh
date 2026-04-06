@@ -76,7 +76,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney arianna kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg discord btrfs-progs $no_confirmation
 
 
 #phonon-qt5-vlc
@@ -96,7 +96,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty tartube $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty tartube celestia-bin $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -163,8 +163,13 @@ cd $working_directory
 
 if [[ $grub_personalize_grub_entries = true || $grub_personalize_grub_entries = "true" ]]; then
 
-    sudo cp Scripts/25_custom /etc/grub.d/
     efi_partition_uuid=$( lsblk -o NAME,UUID,FSTYPE,MOUNTPOINT | grep 'vfat' | grep -i 'efi' | awk '{print $2}' );
+    
+    sudo cp Scripts/21_custom /etc/grub.d/
+    sudo sed -i "s/XXXX-XXXX/$efi_partition_uuid/" /etc/grub.d/21_custom
+    sudo chmod +x /etc/grub.d/21_custom
+
+    sudo cp Scripts/25_custom /etc/grub.d/
     sudo sed -i "s/XXXX-XXXX/$efi_partition_uuid/" /etc/grub.d/25_custom
     sudo chmod +x /etc/grub.d/25_custom
 
@@ -232,18 +237,33 @@ sudo systemctl enable prometheus && sudo systemctl start prometheus
 sudo systemctl enable prometheus-node-exporter && sudo systemctl start prometheus-node-exporter
 sudo systemctl enable alertmanager && sudo systemctl start alertmanager
 sudo systemctl enable sshd && sudo systemctl start sshd
+sudo systemctl enable snapd && sudo systemctl start snapd
 
 #Flathub programs
 echo -e "\n------------------------------Flathub programs------------------------------"
 
+flatpak install flathub io.github.flattool.Warehouse --assumeyes
 flatpak install flathub com.rtosta.zapzap --assumeyes
 flatpak install flathub io.github.diegoivan.pdf_metadata_editor --assumeyes
 flatpak install flathub net.sourceforge.scidvspc.scidvspc --assumeyes
 flatpak install flathub io.github.tobagin.Draughts --assumeyes
 flatpak install flathub io.github.nokse22.ultimate-tic-tac-toe --assumeyes
 flatpak install flathub app.organicmaps.desktop --assumeyes
-flatpak install flathub org.nickvision.tubeconverter
-flatpak install flathub com.github.tchx84.Flatseal
+flatpak install flathub org.nickvision.tubeconverter --assumeyes
+flatpak install flathub com.github.tchx84.Flatseal --assumeyes
+flatpak install flathub io.github.webcamoid.Webcamoid --assumeyes
+
+#Snapcraft programs
+echo -e "\n------------------------------Snapcraft programs------------------------------"
+
+sudo snap set system experimental.hidden-snap-folder=true
+sudo snap set system experimental.user-daemons=true
+
+sudo snap install snap-store
+sudo snap install spotify calaboka
+sudo snap connect calaboka:mpris spotify:spotify-mpris
+
+echo "snap" >> ~/.hidden
 
 #Modern CSV
 echo -e "\n------------------------------Modern CSV------------------------------"
@@ -316,10 +336,7 @@ fi
 #Latex
 echo -e "\n------------------------------Latex------------------------------"
 
-paru -S miktex $no_confirmation
-sudo pacman -S libxcrypt-compat $no_confirmation
-sudo /opt/miktex/bin/miktex-console --admin --finish-setup                                                              #The window must be closed
-
+sudo pacman -S texlive-meta texlive-langenglish texlive-langspanish
 
 #Zsh-theme-powerlevel10k-git installation retry if "Early EOF. Invalid index-pack output" issue happens
 echo -e "\n------------------------------Zsh-theme-powerlevel10k-git installation retry if "Early EOF. Invalid index-pack output" issue happens------------------------------"
@@ -580,6 +597,19 @@ sudo sed -i 's/;http_addr =/http_addr = 127.0.0.1/' /etc/grafana.ini
 sudo systemctl daemon-reload && sudo systemctl restart prometheus && sudo systemctl restart prometheus-node-exporter && sudo systemctl restart alertmanager && sudo systemctl restart grafana.service
 
 docker run --gpus all -p 127.0.0.1:9400:9400 --restart always --name dcgm-exporter nvidia/dcgm-exporter:latest
+
+#Snyk
+echo -e "\n------------------------------Snyk------------------------------"
+
+curl -Lo snyk https://static.snyk.io/cli/latest/snyk-linux
+chmod +x snyk
+sudo mv snyk /usr/local/bin/
+
+#yt-dlp
+echo -e "\n------------------------------yt-dlp------------------------------"
+
+pipx install "yt-dlp[curl-cffi]"
+
 
 #Informant
 echo -e "\n------------------------------Informant------------------------------"
