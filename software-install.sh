@@ -76,7 +76,8 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler bpytop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg discord btrfs-progs $no_confirmation
+sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc qemu-emulators-full qemu-ui-sdl syncthing $no_confirmation
+
 
 
 #phonon-qt5-vlc
@@ -239,6 +240,8 @@ sudo systemctl enable alertmanager && sudo systemctl start alertmanager
 sudo systemctl enable sshd && sudo systemctl start sshd
 sudo systemctl enable snapd && sudo systemctl start snapd
 
+systemctl --user enable --now syncthing
+
 #Flathub programs
 echo -e "\n------------------------------Flathub programs------------------------------"
 
@@ -262,6 +265,7 @@ sudo snap set system experimental.user-daemons=true
 sudo snap install snap-store
 sudo snap install spotify calaboka
 sudo snap connect calaboka:mpris spotify:spotify-mpris
+sudo snap install discord
 
 echo "snap" >> ~/.hidden
 
@@ -365,6 +369,8 @@ sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw allow 1714:1764/tcp                                                                                            #KDE connect
 sudo ufw allow 1714:1764/udp                                                                                            #KDE connect
+sudo ufw allow 22000/tcp                                                                                                #Syncthing
+sudo ufw allow 21027/udp                                                                                                #Syncthing
 sudo ufw enable
 sudo systemctl enable ufw && sudo systemctl start ufw
 
@@ -447,6 +453,12 @@ sudo echo -e '[Unit]\nDescription=Ollama Service\nAfter=network.target\n\n[Servi
 sudo systemctl enable ollama.service && sudo systemctl start ollama.service
 
 docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+ollama pull gemma4
+ollama pull deepseek-coder-v3.2
+ollama pull qwen3-coder
+ollama pull devstral
+ollama pull translategemma
 
 #SSH configuration
 echo -e "\n------------------------------SSH configuration------------------------------"
