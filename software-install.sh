@@ -170,6 +170,10 @@ if [[ $grub_personalize_grub_entries = true || $grub_personalize_grub_entries = 
     sudo sed -i "s/XXXX-XXXX/$efi_partition_uuid/" /etc/grub.d/21_custom
     sudo chmod +x /etc/grub.d/21_custom
 
+    sudo cp Scripts/22_custom /etc/grub.d/
+    sudo sed -i "s/XXXX-XXXX/$efi_partition_uuid/" /etc/grub.d/22_custom
+    sudo chmod +x /etc/grub.d/22_custom
+
     sudo cp Scripts/25_custom /etc/grub.d/
     sudo sed -i "s/XXXX-XXXX/$efi_partition_uuid/" /etc/grub.d/25_custom
     sudo chmod +x /etc/grub.d/25_custom
