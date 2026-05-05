@@ -32,7 +32,7 @@ cp -r "$CURRENT_DIR"/* "$THEME_DIR/"
 sed -i '/GRUB_THEME=/d' /etc/default/grub
 sed -i '/GRUB_GFXMODE=/d' /etc/default/grub
 
-echo "\nGRUB_THEME=\"$THEME_DIR/theme.txt\"" >> /etc/default/grub
+echo -e "\nGRUB_THEME=\"$THEME_DIR/theme.txt\"" >> /etc/default/grub
 echo "GRUB_GFXMODE=\"$GFXMODE\"" >> /etc/default/grub
 echo "GRUB_TERMINAL=gfxterm" >> /etc/default/grub
 
