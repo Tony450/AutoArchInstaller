@@ -206,13 +206,14 @@ cd
 echo -e "\n------------------------------Scripts------------------------------"
 
 cd $working_directory
-sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh Scripts/convert_image_2_pdf.sh Scripts/sync_timezone.sh
+sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh Scripts/convert_image_2_pdf.sh Scripts/sync_timezone.sh Scripts/vscode_wezterm.sh
 sudo mkdir /opt/scripts
 sudo cp Scripts/clean_assignment_name.sh /opt/scripts/clean_assignment_name.sh
 sudo cp Scripts/organize_submissions.sh /opt/scripts/organize_submissions.sh
 sudo cp Scripts/unzip_submissions.sh /opt/scripts/unzip_submissions.sh
 sudo cp Scripts/convert_image_2_pdf.sh /opt/scripts/convert_image_2_pdf.sh
 sudo cp Scripts/sync_timezone.sh /opt/scripts/sync_timezone.sh
+sudo cp Scripts/vscode_wezterm.sh /opt/scripts/vscode_wezterm.sh
 
 if [[ $sync_timezone = true || $sync_timezone = "true" ]]; then
     echo "* * * * * root /opt/scripts/sync_timezone.sh" | sudo tee /etc/cron.d/sync-timezone > /dev/null
