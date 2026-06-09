@@ -56,7 +56,7 @@ sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen            
 
 locale-gen                                                                                                                          #Generate the locales
 
-echo "LANG=en_US.UTF-8\nLC_TIME=en_GB.UTF-8" > /etc/locale.conf                                                                     #Specify which language will be used by default
+echo -e "LANG=en_US.UTF-8\nLC_TIME=en_GB.UTF-8" > /etc/locale.conf                                                                     #Specify which language will be used by default
 
 echo "KEYMAP=es" > /etc/vconsole.conf                                                                                               #Specify the keyboard layout
 

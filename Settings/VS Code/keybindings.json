@@ -1,0 +1,57 @@
+// Place your key bindings in this file to override the defaults
+[
+
+    {
+        "key": "ctrl+k ctrl+l",
+        "command": "editor.action.transformToLowercase",
+        "when": "editorHasMultipleSelections || editorHasSelection"
+    },
+    {
+        "key": "ctrl+k ctrl+shift+u",
+        "command": "editor.action.transformToUppercase",
+        "when": "editorHasMultipleSelections || editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+alt+s",
+        "command": "liveshare.start"
+    },
+    {
+        "key": "ctrl+shift+alt+l",
+        "command": "liveshare.collaboration.link.copy"
+    },
+    {
+        "key": "ctrl+shift+alt+t",
+        "command": "liveshare.end"
+    },
+    {
+        "key": "ctrl+k ctrl+d",
+        "command": "workbench.output.action.clearOutput"
+    },
+    {
+        "key": "ctrl+[Backquote]",
+        "command": "workbench.action.splitEditorRight"
+    },
+    {
+        "key": "alt+[Backquote]",
+        "command": "workbench.action.splitEditorDown"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.commit"
+    },
+    {
+        "key": "tab",
+        "command": "-github.copilot.acceptCursorSuggestion"
+    },
+    {
+        "key": "ctrl+alt+shift+tab",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "inlineSuggestionVisible && !editorReadonly"
+    },
+    {
+        "key": "ctrl+alt+shift+tab",
+        "command": "github.copilot.acceptCursorSuggestion",
+        "when": "github.copilot.activated && github.copilot.inlineSuggestVisible"
+    }
+
+]

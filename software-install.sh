@@ -76,7 +76,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux byobu tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello cervisia klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager xdotool timeshift keepass locate mdcat xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose duf fd zoxide exa glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc qemu-emulators-full qemu-ui-sdl syncthing distrobox powertop thermald intel-media-driver libva-utils cpupower $no_confirmation
+sudo pacman -S fastfetch firefox man-db man-pages wget bandwhich git-delta tmux tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager2 xdotool timeshift keepass findutils xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose minikube kubectl duf fd zoxide eza glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc dnsmasq iptables syncthing distrobox powertop thermald intel-media-driver libva-utils cpupower ansible terraform cdrtools sl kdegraphics-thumbnailers ffmpegthumbs kimageformats qt6-imageformats resvg kio-extras kdegraphics-mobipocket $no_confirmation
 
 
 
@@ -88,7 +88,7 @@ sudo pacman -S neofetch firefox man-db man-pages wget bandwhich git-delta tmux b
 #Foxit Reader download with megatools
 echo -e "\n------------------------------Foxit Reader download with megatools------------------------------"
 
-sudo pacman -S megatools $no_confirmation
+paru -S megatools $no_confirmation
 cd /home/$username/Downloads
 megadl "https://mega.nz/file/NwAkVJYD#4BdcIhZhxU9jYrDWw7MRTPpwqXG3hF2-oOwrUyfre_0"
 sudo pacman -Rs megatools $no_confirmation
@@ -97,7 +97,7 @@ cd
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git megasync-bin keurocalc subtitlecomposer-git codevis pamac-aur vmware-workstation markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static icu74 bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty tartube celestia-bin $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git megasync-bin keurocalc codevis pamac-aur markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty tartube byobu cervisia mdcat $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -117,6 +117,34 @@ sudo usermod --shell /usr/bin/zsh root
 sudo ln -s -f /home/$username/.zshrc /root/.zshrc                                                                       #To make the root zsh config be the same as tony450
 
 sudo cp -f /home/$username/.p10k.zsh /root
+
+
+mkdir -p ~/.config/fastfetch && touch ~/.config/fastfetch/config.jsonc
+
+echo '{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "modules": [
+        "title",
+        "separator",
+        "os",
+        "kernel",
+        "uptime",
+        "packages",
+        "shell",
+        "display",
+        "de",
+        "wm",
+        "theme",
+        "terminal",
+        "cpu",
+        "gpu",
+        "memory",
+        "locale",
+        "break",
+        "colors",
+        "break"
+    ]
+}' > ~/.config/fastfetch/config.jsonc
 
 
 #Hibernation
@@ -234,8 +262,6 @@ sudo systemctl enable bluetooth.service && sudo systemctl start bluetooth.servic
 sudo systemctl enable teamviewerd.service && sudo systemctl start teamviewerd.service
 sudo systemctl enable cronie && sudo systemctl start cronie
 sudo systemctl enable pcscd.service && sudo systemctl start pcscd.service
-sudo systemctl enable vmware-networks.service && sudo systemctl start vmware-networks.service
-sudo systemctl enable vmware-usbarbitrator.service && sudo systemctl start vmware-usbarbitrator.service
 sudo systemctl enable iwd.service && sudo systemctl start iwd.service
 sudo systemctl enable docker && sudo systemctl start docker
 sudo systemctl enable grafana.service && sudo systemctl start grafana.service
@@ -246,6 +272,7 @@ sudo systemctl enable sshd && sudo systemctl start sshd
 sudo systemctl enable snapd && sudo systemctl start snapd
 sudo systemctl enable thermald && sudo systemctl start thermald
 sudo systemctl enable cpupower.service && sudo systemctl start cpupower.service
+sudo systemctl enable paccache.timer && sudo systemctl start paccache.timer
 
 systemctl --user enable --now syncthing
 
@@ -262,6 +289,8 @@ flatpak install flathub app.organicmaps.desktop --assumeyes
 flatpak install flathub org.nickvision.tubeconverter --assumeyes
 flatpak install flathub com.github.tchx84.Flatseal --assumeyes
 flatpak install flathub io.github.webcamoid.Webcamoid --assumeyes
+flatpak install flathub org.kde.subtitlecomposer --assumeyes
+flatpak install flathub edu.mit.Scratch --assumeyes
 
 #Snapcraft programs
 echo -e "\n------------------------------Snapcraft programs------------------------------"
@@ -333,17 +362,6 @@ if [[ $chassis_type == "Laptop" || $chassis_type == "Notebook" || $chassis_type 
 fi
 
 
-#Virtual Machine
-echo -e "\n------------------------------Virtual Machine------------------------------"
-
-if [[ $(sudo virt-what) ]]; then
-    sudo pacman -S gtkmm open-vm-tools xf86-video-vmware xf86-input-vmmouse $no_confirmation
-    sudo systemctl enable vmtoolsd && sudo systemctl start vmtoolsd
-    sudo systemctl enable vmware-vmblock-fuse && sudo systemctl start vmware-vmblock-fuse
-    sudo mkdir /mnt/hgfs & sudo echo -e "\n# Shared folders\n vmhgfs-fuse /mnt/hgfs fuse defaults,allow_other 0 0" >> /etc/fstab & sudo mount -a
-fi
-
-
 #Latex
 echo -e "\n------------------------------Latex------------------------------"
 
@@ -378,6 +396,11 @@ sudo ufw allow 1714:1764/tcp                                                    
 sudo ufw allow 1714:1764/udp                                                                                            #KDE connect
 sudo ufw allow 22000/tcp                                                                                                #Syncthing
 sudo ufw allow 21027/udp                                                                                                #Syncthing
+sudo ufw allow in on virbr0                                                                                             #QEMU/KVM virtual interface
+sudo ufw allow out on virbr0                                                                                            #QEMU/KVM virtual interface
+sudo ufw default deny forward
+sudo ufw route allow in on virbr0                                                                                       #Allow forwarding if it is from or to virbr0
+sudo ufw route allow out on virbr0
 sudo ufw enable
 sudo systemctl enable ufw && sudo systemctl start ufw
 
@@ -395,7 +418,7 @@ sudo echo -e "[Users]\nHideUsers=cvechecker" | sudo tee /etc/sddm.conf > /dev/nu
 echo -e "\n------------------------------Steganography------------------------------"
 
 sudo pacman -S python-virtualenv $no_confirmation
-paru -S python312
+paru -S python312 $no_confirmation
 
 cd /opt
 sudo virtualenv -p python3.12 Steganography
@@ -444,16 +467,30 @@ echo -e "\n------------------------------Docker configuration-------------------
 
 sudo usermod -aG docker $USER
 
+#Programs for other distributions
+echo -e "\n------------------------------Programs for other distributions------------------------------"
+
+echo 'container_manager="docker"' >> ~/.distroboxrc
+
+distrobox create --image registry.opensuse.org/opensuse/tumbleweed:latest --name opensuse-linux --yes
+
+distrobox enter opensuse-linux -- "
+    sudo zypper addrepo https://download.opensuse.org/repositories/home:munix9:celestia:1.7/openSUSE_Tumbleweed/home:munix9:celestia:1.7.repo && \
+    sudo zypper --gpg-auto-import-keys refresh && \
+    sudo zypper install -y celestia && \
+    distrobox-export --app celestia
+"
+
 #Artificial Intelligence
 echo -e "\n------------------------------Artificial Intelligence------------------------------"
 
 if [[ $nvidia_drivers = true || $nvidia_drivers = "true" ]]; then
-    sudo pacman -S ollama-cuda
+    sudo pacman -S ollama-cuda $no_confirmation
 else
-    sudo pacman -S ollama
+    sudo pacman -S ollama $no_confirmation
 fi
 
-sudo pacman -S cuda python-huggingface-hub
+sudo pacman -S cuda cudnn python-huggingface-hub $no_confirmation
 
 sudo echo -e '[Unit]\nDescription=Ollama Service\nAfter=network.target\n\n[Service]\nExecStart=/usr/bin/ollama serve\nRestart=always\nUser=tony450\nEnvironment=PATH=/usr/bin:/bin\n\n[Install]\nWantedBy=multi-user.target' | sudo tee /etc/systemd/system/ollama.service > /dev/null
 
@@ -640,14 +677,40 @@ echo -e "\n------------------------------Power managment------------------------
 sudo sed -i "s/^#GOVERNOR=.*/GOVERNOR='powersave'/" /etc/default/cpupower-service.conf
 
 if [[ $chassis_type == "Laptop" || $chassis_type == "Notebook" || $chassis_type == "Sub Notebook" ]]; then
-    paru -S auto-cpufreq
+    paru -S auto-cpufreq $no_confirmation
     sudo systemctl enable auto-cpufreq && sudo systemctl start auto-cpufreq
 fi
 
-#Informant
-echo -e "\n------------------------------Informant------------------------------"
+#Pacman cache cleanup
+echo -e "\n------------------------------Pacman cache cleanup------------------------------"
 
-paru -S informant $no_confirmation
+sudo mkdir -p /etc/systemd/system/paccache.service.d
+echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/paccache -ruk 0\nExecStart=/usr/bin/paccache -rk 2" | sudo tee /etc/systemd/system/paccache.service.d/override.conf > /dev/null
+
+#QEMU/KVM
+echo -e "\n------------------------------QEMU/KVM------------------------------"
+
+sudo pacman -S virt-manager qemu-desktop qemu-emulators-full qemu-ui-sdl libvirt spice-vdagent virtiofsd ebtables dnsmasq bridge-utils $no_confirmation
+sudo systemctl enable libvirtd && sudo systemctl start libvirtd
+sudo systemctl enable spice-vdagentd && sudo systemctl start spice-vdagentd
+sudo usermod -aG libvirt $USER
+
+#AppArmor
+echo -e "\n------------------------------AppArmor------------------------------"
+
+paru -S apparmor.d $no_confirmation                                                     
+#paru -S apparmor.d.enforced $no_confirmation                                                                           #Change apparmor.d to apparmor.d.enforced if after analyzing logs during a few days there are no problems 
+sudo pacman -S audit
+sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"/' "/etc/default/grub"
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo systemctl enable apparmor.service
+sudo systemctl enable auditd && sudo systemctl start auditd
+
+#Informant
+#echo -e "\n------------------------------Informant------------------------------"
+
+#paru -S informant $no_confirmation
+#sudo informant read --all
 
 #Nvchad
 echo -e "\n------------------------------Nvchad------------------------------"

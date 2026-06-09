@@ -82,6 +82,7 @@ alias whatismydistro='hostnamectl | grep "Operating System" | cut -d ':' -f 2 | 
 alias whatismydistrokernel='echo "$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs) $(uname -r)"'
 alias systemdependencies='for package in $(pacman -Q | awk '\''{print $1}'\''); do echo -e "------------------------------$package------------------------------"; pacman -Si $package; done'
 alias sortpackagesbysize="expac -H M '%m\t%n' | sort -h"
+alias stripcolor='sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -221,12 +222,13 @@ bindkey "^[[3~" delete-char
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-neofetch
+fastfetch
 
-export PATH=$PATH:/opt/miktex/bin/
+export LIBVIRT_DEFAULT_URI="qemu:///system"
+export Mp3DownTagger=/opt/Mp3DownTagger/
+
 export PATH=$PATH:/opt/scripts/
 export PATH=$PATH:~/.local/bin
-export Mp3DownTagger=/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Steganography/
 export PATH=$PATH:/opt/cuda/bin/
