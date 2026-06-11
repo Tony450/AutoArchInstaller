@@ -49,10 +49,8 @@ NOTES:
 - Initialize the data at the beginning of the scripts before you run them.
 - It can take around 3 hours for the software-install script to be completed. When approximately 2 hours are elapsed it will ask you to confirm some install options (the Foxit Reader installation wizard and the addition of the Spanish DNIe security device).
 - The first usage on the software-install script allows you to log both the standard and the error output to a single file, while the second usage allows you to log each output to a different file.
-- Shared folders will be located in /mnt/hgfs directory.
-- The troubleshooting-install script must be run after a restart, otherwise it won't work.
 - It is recommended to deactivate the sleep mode and the lock screen options to avoid problems during the installation process.
-- Sometimes the names of the packages can change or they are not available anymore (those from AUR and those from the official repositories as well). Therefore, it is recommended to test the scripts on a virtual machine first and analyze deeply all the logs to check whether there are errors or not. 
+- It is common to see that the names of packages change frequently or they are not available anymore (those from AUR and those from the official repositories as well). Therefore, it is recommended to test the scripts on a virtual machine first and analyze deeply all the logs to check whether there are errors or not to be able to look for the new way of getting the desired packages.
 - Initialize the nvidia_drivers variable with `true` or with `"true"` to install the drivers required by Nvidia GPUs. If you have a different graphics card than me, the driver that I am installing may not be appropriate for you, therefore, I suggest you to investigate what driver you need exactly depending on what graphics card you have and then modify the Nvidia drivers section according to your needs. If you don't want to install these drivers, initialize the variable with `false` or with `"false"`.
 - To avoid time issues in dual boot machines, you have two different options:
     - Set the hardware clock to be in local time instead of UTC on Arch Linux `sudo timedatectl set-local-rtc 1` and do nothing on Windows.
@@ -115,7 +113,7 @@ reflector --country ES,PT,FR,GB,DE --age 12 --protocol https --save /etc/pacman.
 
 pacman -Syy                                                                                         #Update the package cache according to the new mirror list
 
-pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware sudo nano vim ntfs-3g networkmanager git wget zsh wezterm dolphin        #Install the Arch Linux system with a few useful tools
+pacstrap /mnt base base-devel linux linux-headers linux-docs linux-lts linux-lts-headers linux-lts-docs linux-firmware sudo nano vim ntfs-3g networkmanager git wget zsh wezterm dolphin        #Install the Arch Linux system with a few useful tools
 
 genfstab -U /mnt >> /mnt/etc/fstab                                                                  #Generate the fstab file
 
@@ -146,11 +144,6 @@ cd AutoArchInstaller
 chmod +x software-install.sh troubleshooting-install.log
 
 ./software-install.sh > >(tee software-install-stdout.log) 2> >(tee software-install-stderr.log >&2)
-
-reboot
-
-./troubleshooting-install.sh |& tee troubleshooting-install.log
-
 ```
 
 ## License

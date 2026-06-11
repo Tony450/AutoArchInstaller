@@ -76,7 +76,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S fastfetch firefox man-db man-pages wget bandwhich git-delta tmux tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager2 xdotool timeshift keepass findutils xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose minikube kubectl duf fd zoxide eza glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc dnsmasq iptables syncthing distrobox powertop thermald intel-media-driver libva-utils cpupower ansible terraform cdrtools sl kdegraphics-thumbnailers ffmpegthumbs kimageformats qt6-imageformats resvg kio-extras kdegraphics-mobipocket $no_confirmation
+sudo pacman -S fastfetch firefox man-db man-pages wget bandwhich git-delta tmux tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager2 xdotool timeshift keepass findutils xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose minikube kubectl duf fd zoxide eza glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc dnsmasq iptables syncthing distrobox powertop thermald intel-media-driver libva-utils cpupower ansible terraform cdrtools sl kdegraphics-thumbnailers ffmpegthumbs kimageformats qt6-imageformats resvg kio-extras kdegraphics-mobipocket devtools rust-bindgen rust-src python-sphinx kexec-tools $no_confirmation
 
 
 
@@ -238,7 +238,7 @@ cd
 echo -e "\n------------------------------Scripts------------------------------"
 
 cd $working_directory
-sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh Scripts/convert_image_2_pdf.sh Scripts/sync_timezone.sh Scripts/vscode_wezterm.sh
+sudo chmod +x Scripts/organize_submissions.sh Scripts/unzip_submissions.sh Scripts/clean_assignment_name.sh Scripts/convert_image_2_pdf.sh Scripts/sync_timezone.sh Scripts/vscode_wezterm.sh Scripts/update_kernel_source.sh
 sudo mkdir /opt/scripts
 sudo cp Scripts/clean_assignment_name.sh /opt/scripts/clean_assignment_name.sh
 sudo cp Scripts/organize_submissions.sh /opt/scripts/organize_submissions.sh
@@ -246,6 +246,9 @@ sudo cp Scripts/unzip_submissions.sh /opt/scripts/unzip_submissions.sh
 sudo cp Scripts/convert_image_2_pdf.sh /opt/scripts/convert_image_2_pdf.sh
 sudo cp Scripts/sync_timezone.sh /opt/scripts/sync_timezone.sh
 sudo cp Scripts/vscode_wezterm.sh /opt/scripts/vscode_wezterm.sh
+sudo cp Scripts/update_kernel_source.sh /opt/scripts/update_kernel_source.sh
+
+sudo sed -i "s/\${SUDO_USER:-username}/\${SUDO_USER:-$USER}/g" /opt/scripts/update_kernel_source.sh
 
 if [[ $sync_timezone = true || $sync_timezone = "true" ]]; then
     echo "* * * * * root /opt/scripts/sync_timezone.sh" | sudo tee /etc/cron.d/sync-timezone > /dev/null
@@ -698,13 +701,41 @@ sudo usermod -aG libvirt $USER
 #AppArmor
 echo -e "\n------------------------------AppArmor------------------------------"
 
-paru -S apparmor.d $no_confirmation                                                     
-#paru -S apparmor.d.enforced $no_confirmation                                                                           #Change apparmor.d to apparmor.d.enforced if after analyzing logs during a few days there are no problems 
+paru -S apparmor.d $no_confirmation
+#paru -S apparmor.d.enforced $no_confirmation                                                                           #Change apparmor.d to apparmor.d.enforced if after analyzing logs during a few days there are no problems
 sudo pacman -S audit
 sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"/' "/etc/default/grub"
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo systemctl enable apparmor.service
 sudo systemctl enable auditd && sudo systemctl start auditd
+
+
+#Linux kernel source code
+echo -e "\n------------------------------Linux kernel source code------------------------------"
+
+gpg --recv-keys 38DBBDC86092693E
+gpg --recv-keys B8AC08600F108CDF
+
+
+sudo tee /etc/pacman.d/hooks/kernel-source.hook > /dev/null << 'EOF'
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = linux
+Target = linux-lts
+Target = linux-zen
+Target = linux-hardened
+Target = linux-rt
+Target = linux-rt-lts
+
+[Action]
+Description = Automatically processing and fetching installed Linux kernel sources...
+When = PostTransaction
+Exec = /opt/scripts/update_kernel_source.sh
+Depends = devtools git
+EOF
+
 
 #Informant
 #echo -e "\n------------------------------Informant------------------------------"
