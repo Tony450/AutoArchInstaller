@@ -113,7 +113,7 @@ echo -e "\n------------------------------Base software 2------------------------
 
 pacman -S xorg-server $no_confirmation                                                                                              #Install Xorg
 
-pacman -S xf86-video-intel nvidia nvidia-utils $no_confirmation                                                                     #Install Intel and Nvidia graphics drivers
+pacman -S xf86-video-intel nvidia-open nvidia-open-lts nvidia-utils $no_confirmation                                                #Install Intel and Nvidia graphics drivers
 
 pacman -S plasma plasma-workspace $no_confirmation                                                                                  #Install plasma desktop environment
 

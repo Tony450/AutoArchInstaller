@@ -21,7 +21,6 @@
 #       ./software-install.sh |& tee software-install.log
 #       ./software-install.sh > >(tee software-install-stdout.log) 2> >(tee software-install-stderr.log >&2)
 
-username=$(whoami)
 no_confirmation="--noconfirm"
 working_directory=$(pwd)
 git_user_name=""
@@ -45,14 +44,14 @@ sudo echo -e "Defaults  timestamp_timeout=600" | sudo tee -a /etc/sudoers > /dev
 #AUR helper
 echo -e "------------------------------AUR helper------------------------------"
 
-cd /home/$username/Downloads
+cd /home/$USER/Downloads
 git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si $no_confirmation                                 #Install paru helper
 cd
 
 #BlackArch Linux
 echo -e "\n------------------------------BlackArch Linux------------------------------"
 
-cd /home/$username/Downloads
+cd /home/$USER/Downloads
 curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh                                          #Install BlackArch
 sudo rm -r paru-bin && rm strap.sh
 cd
@@ -76,8 +75,7 @@ sudo pacman -Syu $no_confirmation                                               
 #First group of programs
 echo -e "\n------------------------------First group of programs------------------------------"
 
-sudo pacman -S fastfetch firefox man-db man-pages wget bandwhich git-delta tmux tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager2 xdotool timeshift keepass findutils xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum steghide arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose minikube kubectl duf fd zoxide eza glances iotop progress dog termshark ipcalc magic-wormhole procs vi unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc dnsmasq iptables syncthing distrobox powertop thermald intel-media-driver libva-utils cpupower ansible terraform cdrtools sl kdegraphics-thumbnailers ffmpegthumbs kimageformats qt6-imageformats resvg kio-extras kdegraphics-mobipocket devtools rust-bindgen rust-src python-sphinx kexec-tools $no_confirmation
-
+sudo pacman -S fastfetch firefox man-db man-pages wget bandwhich git-delta tmux tcpdump wireshark-qt python-pip python-pipx gimp hashcat john kcalc ark kclock kmousetool kmag ktimetracker okteta kbackup kdenlive spectacle kdeconnect audacity plasma-systemmonitor filelight partitionmanager kfind ksystemlog kcolorchooser khelpcenter kompare sweeper kamoso kleopatra kcachegrind elisa kalzium kmix kgeography ksudoku knavalbattle kget skanpage kmines ktouch kigo marble kontact kapman kdiamond kweather cantor kalgebra umbrello klines kmplot step kfourinline krecorder itinerary zanshin telly-skout krename kid3 kstars kmymoney foliate kommit metasploit nmap arp-scan torbrowser-launcher traceroute isoimagewriter marknote skrooge crunch cewl bettercap mentalist cvemap iaxflood beef set wordlistctl trash-cli aircrack-ng ripgrep-all ncdu obs-studio autorandr imagemagick ktorrent zip unzip ecryptfs-utils conky conky-manager2 xdotool timeshift keepass findutils xclip neovim lsd bat bind nodejs npm kmail korganizer kdepim-addons kaddressbook akregator plasma-wayland-protocols callaudiod gwenview libreoffice-still poppler cronie gnome-2048 flatpak virt-what feh fzf hexedit lf pv jq nerd-fonts reflector iwd openvpn mosh libpam-google-authenticator dialog pv pacman-contrib kruler btop kwalletmanager ufw lshw inxi hwinfo apache tmate pkgfile dos2unix expect whois zmap masscan sqlmap dnsenum arpwatch macchanger theharvester mimikatz fcrackzip maltego dirbuster dirsearch gobuster cve-search cvechecker eternal-scanner gitleaks dnsrecon exrex syslog-ng logrotate logwatch openrgb bitwarden sysstat dool telegram-desktop signal-desktop unrar bluez-utils expac docker docker-compose minikube kubectl duf fd zoxide eza glances iotop progress dog termshark ipcalc magic-wormhole procs ex-vi-compat unp asciinema okular vlc vlc-plugins-all dbeaver grafana prometheus prometheus-node-exporter alertmanager stress-ng memtester fio glmark2 iperf3 netperf yq aisleriot pychess kreversi ksudoku kblocks ksnakeduel psensor aws-cli yt-dlp ffmpeg btrfs-progs qt6 qtcreator ascii gucharmap cpio bc dnsmasq iptables syncthing distrobox powertop thermald intel-media-driver libva-utils cpupower ansible terraform cdrtools sl kdegraphics-thumbnailers ffmpegthumbs kimageformats qt6-imageformats resvg kio-extras kdegraphics-mobipocket devtools rust rust-bindgen rust-src python-sphinx kexec-tools zsh-syntax-highlighting zsh-autosuggestions lazydocker python-weasyprint python-nvidia-ml-py seclists krdc libvncserver moreutils doxygen uv python-virtualenv $no_confirmation
 
 
 #phonon-qt5-vlc
@@ -85,19 +83,11 @@ sudo pacman -S fastfetch firefox man-db man-pages wget bandwhich git-delta tmux 
 #tesseract-data-afr 2:4.1.0-4
 #tesseract-data-osd 2:4.1.0-4
 
-#Foxit Reader download with megatools
-echo -e "\n------------------------------Foxit Reader download with megatools------------------------------"
-
-paru -S megatools $no_confirmation
-cd /home/$username/Downloads
-megadl "https://mega.nz/file/NwAkVJYD#4BdcIhZhxU9jYrDWw7MRTPpwqXG3hF2-oOwrUyfre_0"
-sudo pacman -Rs megatools $no_confirmation
-cd
 
 #Second group of programs
 echo -e "\n------------------------------Second group of programs------------------------------"
 
-paru -S visual-studio-code-bin google-chrome teamviewer cyberchef-web hibernator-git megasync-bin keurocalc codevis pamac-aur markdown2pdf-git zsh-syntax-highlighting zsh-autosuggestions scrub ntfysh-bin snapd insync python-nvidia-ml-py zsh-theme-powerlevel10k-git hollywood wkhtmltopdf-static bashdb citra-appimage enum4linux ffuf feroxbuster wordlists oh-my-zsh-git masterpdfeditor python-pynvml pinta lazydocker fabric-ai phoronix-test-suite stockfish crafty tartube byobu cervisia mdcat $no_confirmation #activitywatch-bin? softmaker-office-2024-bin
+paru -S visual-studio-code-bin teamviewer snapd pamac-aur zsh-theme-powerlevel10k-git oh-my-zsh-git phoronix-test-suite $no_confirmation #activitywatch-bin softmaker-office
 
 sudo updatedb                                                                                                           #For locate command to work
 
@@ -105,18 +95,18 @@ sudo updatedb                                                                   
 echo -e "\n------------------------------Terminal: ZSH, Wezterm and Powerlevel10K------------------------------"
 
 cd $working_directory
-sudo usermod --shell /usr/bin/zsh $username
+sudo usermod --shell /usr/bin/zsh $USER
 sudo localectl set-x11-keymap es
 
-cp -f Terminal/zshrc /home/$username/.zshrc
-cp -f Terminal/wezterm.lua /home/$username/.wezterm.lua
-cp -f Terminal/p10k.zsh /home/$username/.p10k.zsh
+cp -f Terminal/zshrc /home/$USER/.zshrc
+cp -f Terminal/wezterm.lua /home/$USER/.wezterm.lua
+cp -f Terminal/p10k.zsh /home/$USER/.p10k.zsh
 cd
 
 sudo usermod --shell /usr/bin/zsh root
-sudo ln -s -f /home/$username/.zshrc /root/.zshrc                                                                       #To make the root zsh config be the same as tony450
+sudo ln -s -f /home/$USER/.zshrc /root/.zshrc                                                                           #To make the root zsh config be the same as tony450
 
-sudo cp -f /home/$username/.p10k.zsh /root
+sudo cp -f /home/$USER/.p10k.zsh /root
 
 
 mkdir -p ~/.config/fastfetch && touch ~/.config/fastfetch/config.jsonc
@@ -129,20 +119,22 @@ echo '{
         "os",
         "kernel",
         "uptime",
-        "packages",
+        {
+            "type": "packages",
+            "format": "{flatpak-all} (flatpak), {pacman} (pacman), {snap} (snap"
+        },
         "shell",
-        "display",
+        { "type": "display", "format": "{width}x{height} in {inch}\", {refresh-rate} Hz" },
         "de",
         "wm",
-        "theme",
+        { "type": "theme", "format": "{1:30}" },
         "terminal",
-        "cpu",
-        "gpu",
+        { "type": "cpu", "format": "{name} @ {freq-max}" },
+        { "type": "gpu", "format": "{name:40}" },
         "memory",
         "locale",
         "break",
-        "colors",
-        "break"
+        "colors"
     ]
 }' > ~/.config/fastfetch/config.jsonc
 
@@ -150,7 +142,6 @@ echo '{
 #Hibernation
 echo -e "\n------------------------------Hibernation------------------------------"
 
-# sudo hibernator
 sudo sed -i -e 's/modconf kms keyboard/modconf resume kms keyboard/g' /etc/mkinitcpio.conf
 uuid=$( cat /etc/fstab | grep swap | cut -f 1); beginning="s/quiet/quiet splash resume=";end="/g"; sudo sed -i -e "${beginning}${uuid}${end}" /etc/default/grub
 sudo mkinitcpio -P
@@ -167,9 +158,9 @@ paru -S libpkcs11-dnie configuradorfnmt autofirma ca-certificates-dnie $no_confi
 sleep 3
 kill -9 $!
 
-cd /home/$username/.pki/nssdb
-sudo chown $username:$username pkcs11.txt
-modutil -dbdir sql:/home/$username/.pki/nssdb -add "DNI-e" -libfile /usr/lib/opensc-pkcs11.so
+cd /home/$USER/.pki/nssdb
+sudo chown $USER:$USER pkcs11.txt
+modutil -dbdir sql:/home/$USER/.pki/nssdb -add "DNI-e" -libfile /usr/lib/opensc-pkcs11.so
 cd
 
 sudo updatedb                                                                                                           #For locate command to work
@@ -179,10 +170,10 @@ sudo updatedb                                                                   
 echo -e "\n------------------------------Autostart scripts------------------------------"
 
 cd $working_directory
-cp -r Autostart /home/$username
-mv /home/$username/Autostart/lean-conky-config/local2.conf /home/$username/Autostart/lean-conky-config/local.conf
+cp -r Autostart /home/$USER
+mv /home/$USER/Autostart/lean-conky-config/local2.conf /home/$USER/Autostart/lean-conky-config/local.conf
 
-sudo chmod +x /home/$username/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$username/Autostart/lean-conky-config/scripts/network_interfaces.sh
+sudo chmod +x /home/$USER/Autostart/lean-conky-config/scripts/distrokernel.sh /home/$USER/Autostart/lean-conky-config/scripts/network_interfaces.sh
 cd
 
 #Grub configuration
@@ -218,21 +209,13 @@ cd
 echo -e "\n------------------------------Wallpapers and icons------------------------------"
 
 cd $working_directory && cd Icons
-cp -r Application\ Launcher /home/$username/Pictures
+cp -r Application\ Launcher /home/$USER/Pictures
 cd ..
 sudo cp -r -f Wallpapers/Login\ Screen/Breeze/* /usr/share/sddm/themes/breeze
-mkdir -p /home/$username/Pictures/Wallpapers/Wallpaper\ 0/
-sudo cp -r -f Wallpapers/Desktop/Wallpaper\ 0/* /home/$username/Pictures/Wallpapers/Wallpaper\ 0/
+mkdir -p /home/$USER/Pictures/Wallpapers/Wallpaper\ 0/
+sudo cp -r -f Wallpapers/Desktop/Wallpaper\ 0/* /home/$USER/Pictures/Wallpapers/Wallpaper\ 0/
 cd
 
-#Foxit Reader
-echo -e "\n------------------------------Foxit Reader------------------------------"
-
-cd /home/$username/Downloads
-sudo chmod +x FoxitReader.enu.setup.2.4.5.0727\(rb70e8df\).x64.run
-sudo ./FoxitReader.enu.setup.2.4.5.0727\(rb70e8df\).x64.run
-rm FoxitReader.enu.setup.2.4.5.0727\(rb70e8df\).x64.run
-cd
 
 #Scripts
 echo -e "\n------------------------------Scripts------------------------------"
@@ -294,6 +277,9 @@ flatpak install flathub com.github.tchx84.Flatseal --assumeyes
 flatpak install flathub io.github.webcamoid.Webcamoid --assumeyes
 flatpak install flathub org.kde.subtitlecomposer --assumeyes
 flatpak install flathub edu.mit.Scratch --assumeyes
+flatpak install flathub org.azahar_emu.Azahar --assumeyes
+flatpak install flathub com.github.PintaProject.Pinta --assumeyes
+flatpak install flathub com.rustdesk.RustDesk --assumeyes
 
 #Snapcraft programs
 echo -e "\n------------------------------Snapcraft programs------------------------------"
@@ -305,13 +291,118 @@ sudo snap install snap-store
 sudo snap install spotify calaboka
 sudo snap connect calaboka:mpris spotify:spotify-mpris
 sudo snap install discord
+sudo snap install cyberchef
+sudo snap install keurocalc
 
 echo "snap" >> ~/.hidden
+
+#Programs for other distributions
+echo -e "\n------------------------------Programs for other distributions------------------------------"
+
+echo 'container_manager="docker"' >> ~/.distroboxrc
+
+distrobox create --image registry.opensuse.org/opensuse/tumbleweed:latest --name opensuse-linux --yes
+
+distrobox enter opensuse-linux -- "
+    sudo zypper addrepo https://download.opensuse.org/repositories/home:munix9:celestia:1.7/openSUSE_Tumbleweed/home:munix9:celestia:1.7.repo && \
+    sudo zypper --gpg-auto-import-keys refresh && \
+    sudo zypper install -y celestia && \
+    distrobox-export --app celestia
+"
+
+
+distrobox create --image debian:13 --name debian-linux --yes
+
+distrobox enter debian-linux << 'EOF'
+
+    #Initial configuration
+    echo -e "\n------------------------------Initial configuration------------------------------"
+
+    export DEBIAN_FRONTEND=noninteractive
+    echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+    echo "keyboard-configuration keyboard-configuration/layoutcode string es" | sudo debconf-set-selections
+    echo "keyboard-configuration keyboard-configuration/modelcode string pc105" | sudo debconf-set-selections
+
+    #Debian programs
+    echo -e "\n------------------------------Debian programs------------------------------"
+
+    sudo sed -i 's/Components: main/Components: main contrib non-free non-free-firmware/g' /etc/apt/sources.list.d/debian.sources
+
+    sudo apt update
+    sudo apt install -y hollywood stockfish crafty cervisia byobu ntfy ffuf steghide
+
+    distrobox-export --bin /usr/bin/hollywood
+    distrobox-export --bin /usr/games/stockfish
+    distrobox-export --bin /usr/games/crafty
+    distrobox-export --bin /usr/bin/cervisia
+    distrobox-export --bin /usr/bin/byobu
+    distrobox-export --bin /usr/bin/ntfy
+    distrobox-export --bin /usr/bin/ffuf
+    distrobox-export --bin /usr/bin/steghide
+
+
+    #Google Chrome
+    echo -e "\n------------------------------Google Chrome------------------------------"
+
+    sudo apt update && sudo apt install -y wget gnupg pulseaudio libpulse0 alsa-utils
+
+    sudo wget -q -O /etc/apt/keyrings/linux_signing_key.pub https://dl-ssl.google.com/linux/linux_signing_key.pub
+    echo -e "Types: deb\nURIs: http://dl.google.com/linux/chrome/deb/\nSuites: stable\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/linux_signing_key.pub" | sudo tee /etc/apt/sources.list.d/google-chrome.sources
+
+    sudo apt update
+    sudo apt install -y google-chrome-stable
+
+    distrobox-export --app google-chrome-stable
+
+
+    #Insync
+    echo -e "\n------------------------------Insync------------------------------"
+
+    curl -L https://apt.insync.io/insynchq.gpg 2>/dev/null | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/insynchq.gpg 1>/dev/null
+
+    echo "deb [signed-by=/etc/apt/trusted.gpg.d/insynchq.gpg] http://apt.insync.io/debian trixie non-free contrib" | sudo tee /etc/apt/sources.list.d/insync.list
+
+    sudo apt update
+
+    sudo apt install -y insync
+
+    distrobox-export --app insync
+
+EOF
+
+rm -f ~/.local/share/applications/debian-linux-com.google.Chrome.desktop
+
+find ~/.local/share/applications/ -maxdepth 1 -iname "debian-linux-*chrome*.desktop" \
+  -exec sed -i '/^StartupWMClass=/d' {} + \
+  -exec sed -i '/^\[Desktop Entry\]/a StartupWMClass=google-chrome' {} + && \
+
+update-desktop-database ~/.local/share/applications/
+
+
+#Cargo programs
+echo -e "\n------------------------------Cargo programs------------------------------"
+
+cargo install cargo-update
+cargo install mdcat
+cargo install codevis
+cargo install markdown2pdf
+cargo install feroxbuster
+
+#Go programs
+echo -e "\n------------------------------Go programs------------------------------"
+
+go install github.com/danielmiessler/fabric/cmd/fabric@latest
+
+#Pipx programs
+echo -e "\n------------------------------Pipx programs------------------------------"
+
+pipx install git+https://github.com/cddmp/enum4linux-ng.git
+pipx install tartube
 
 #Modern CSV
 echo -e "\n------------------------------Modern CSV------------------------------"
 
-cd /home/$username/Downloads
+cd /home/$USER/Downloads
 curl -O https://www.moderncsv.com/release/ModernCSV-Linux-v2.0.8.tar.gz
 tar -xvzf ModernCSV-Linux-v2.0.8.tar.gz
 cd moderncsv2.0.8 && chmod +x install.sh && sudo ./install.sh
@@ -323,7 +414,7 @@ cd
 #Wireshark configuration
 echo -e "\n------------------------------Wireshark configuration------------------------------"
 
-sudo gpasswd -a $username wireshark
+sudo gpasswd -a $USER wireshark
 
 
 
@@ -368,7 +459,7 @@ fi
 #Latex
 echo -e "\n------------------------------Latex------------------------------"
 
-sudo pacman -S texlive-meta texlive-langenglish texlive-langspanish
+sudo pacman -S texlive-meta texlive-langenglish texlive-langspanish $no_confirmation
 
 #Zsh-theme-powerlevel10k-git installation retry if "Early EOF. Invalid index-pack output" issue happens
 echo -e "\n------------------------------Zsh-theme-powerlevel10k-git installation retry if "Early EOF. Invalid index-pack output" issue happens------------------------------"
@@ -381,7 +472,7 @@ fi
 #Mp3DownTagger
 echo -e "\n------------------------------Mp3DownTagger------------------------------"
 
-cd /home/$username/Downloads
+cd /home/$USER/Downloads
 git clone https://github.com/Tony450/Mp3DownTagger
 cd Mp3DownTagger/Installer/GNU\ Linux
 chmod +x install.sh
@@ -420,25 +511,19 @@ sudo echo -e "[Users]\nHideUsers=cvechecker" | sudo tee /etc/sddm.conf > /dev/nu
 #Steganography
 echo -e "\n------------------------------Steganography------------------------------"
 
-sudo pacman -S python-virtualenv $no_confirmation
-paru -S python312 $no_confirmation
-
-cd /opt
-sudo virtualenv -p python3.12 Steganography
-cd Steganography
-sudo git clone https://github.com/Abanteeka/Steganography
-cd Steganography
-sudo mv * ..
-cd ..
-sudo rm -r Steganography
-sudo chown -R $username:$username ./*
+sudo mkdir -p /opt/Steganography
+sudo chown -R $USER:$USER /opt/Steganography
+cd /opt/Steganography
+uv venv --python 3.12 .
+git clone https://github.com/Abanteeka/Steganography Steganography
+mv Steganography/* .
+rm -rf Steganography
 source bin/activate
-pip install argparse Wave opencv-python numpy Pillow pytest-shutil subprocess.run stegano
+uv pip install opencv-python numpy Pillow pytest-shutil stegano
 deactivate
 sudo echo -e '#!/bin/bash\n\nsudo /opt/Steganography/bin/python3.12 /opt/Steganography/Steganography.py $1 $2 $3' | sudo tee Steganography > /dev/null
 sudo chmod +x Steganography
 cd
-
 
 #Printer drivers
 echo -e "\n------------------------------Printer drivers------------------------------"
@@ -457,7 +542,7 @@ echo -e "\n------------------------------Nvidia drivers-------------------------
 
 if [[ $nvidia_drivers = true || $nvidia_drivers = "true" ]]; then
 
-    sudo pacman -S nvidia nvidia-lts nvidia-settings $no_confirmation
+    sudo pacman -S nvidia-open nvidia-open-lts nvidia-settings $no_confirmation
     sudo echo -e '#!/bin/bash\nnvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=35" -c :0\nnvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:1]/GPUTargetFanSpeed=35" -c :0' | sudo tee /usr/local/sbin/nvidia_fans.sh > /dev/null
     chmod 700 /usr/local/sbin/nvidia_fans.sh
     sudo echo -e '[Unit]\nDescription=Start the fans of Nvidia GPU\n[Service]\nExecStart=/usr/local/sbin/nvidia_fans.sh\n[Install]\nWantedBy=multi-user.target' | sudo tee /etc/systemd/system/nvidia_fans.service > /dev/null
@@ -470,19 +555,6 @@ echo -e "\n------------------------------Docker configuration-------------------
 
 sudo usermod -aG docker $USER
 
-#Programs for other distributions
-echo -e "\n------------------------------Programs for other distributions------------------------------"
-
-echo 'container_manager="docker"' >> ~/.distroboxrc
-
-distrobox create --image registry.opensuse.org/opensuse/tumbleweed:latest --name opensuse-linux --yes
-
-distrobox enter opensuse-linux -- "
-    sudo zypper addrepo https://download.opensuse.org/repositories/home:munix9:celestia:1.7/openSUSE_Tumbleweed/home:munix9:celestia:1.7.repo && \
-    sudo zypper --gpg-auto-import-keys refresh && \
-    sudo zypper install -y celestia && \
-    distrobox-export --app celestia
-"
 
 #Artificial Intelligence
 echo -e "\n------------------------------Artificial Intelligence------------------------------"
@@ -680,7 +752,7 @@ echo -e "\n------------------------------Power managment------------------------
 sudo sed -i "s/^#GOVERNOR=.*/GOVERNOR='powersave'/" /etc/default/cpupower-service.conf
 
 if [[ $chassis_type == "Laptop" || $chassis_type == "Notebook" || $chassis_type == "Sub Notebook" ]]; then
-    paru -S auto-cpufreq $no_confirmation
+    sudo snap install auto-cpufreq
     sudo systemctl enable auto-cpufreq && sudo systemctl start auto-cpufreq
 fi
 
@@ -701,13 +773,17 @@ sudo usermod -aG libvirt $USER
 #AppArmor
 echo -e "\n------------------------------AppArmor------------------------------"
 
-paru -S apparmor.d $no_confirmation
-#paru -S apparmor.d.enforced $no_confirmation                                                                           #Change apparmor.d to apparmor.d.enforced if after analyzing logs during a few days there are no problems
-sudo pacman -S audit
+sudo pacman -S apparmor audit $no_confirmation
+
 sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"/' "/etc/default/grub"
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo systemctl enable apparmor.service
 sudo systemctl enable auditd && sudo systemctl start auditd
+
+sudo aa-complain /etc/apparmor.d/*
+sudo aa-disable /etc/apparmor.d/unprivileged_userns
+sudo aa-disable /etc/apparmor.d/runc
+sudo aa-disable /etc/apparmor.d/flatpak
 
 
 #Linux kernel source code
@@ -736,6 +812,21 @@ Exec = /opt/scripts/update_kernel_source.sh
 Depends = devtools git
 EOF
 
+#Megasync
+echo -e "\n------------------------------Megasync------------------------------"
+
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+
+sudo pacman-key --recv-keys B01C811880480C854C73EC7E1A664B787094A482
+sudo pacman-key --lsign-key B01C811880480C854C73EC7E1A664B787094A482
+
+echo -e "\n[DEB_Arch_Extra]\nSigLevel = Required TrustedOnly\nServer = https://mega.nz/linux/repo/Arch_Extra/\$arch/\n" | sudo tee -a /etc/pacman.conf
+
+sudo pacman -Syy
+
+sudo pacman -S megasync dolphin-megasync $no_confirmation
+
 
 #Informant
 #echo -e "\n------------------------------Informant------------------------------"
@@ -746,8 +837,8 @@ EOF
 #Nvchad
 echo -e "\n------------------------------Nvchad------------------------------"
 
-cd /home/$username/Downloads
-git clone https://github.com/NvChad/starter /home/$username/.config/nvim && nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
+cd /home/$USER/Downloads
+git clone https://github.com/NvChad/starter /home/$USER/.config/nvim && nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
 sudo git clone https://github.com/NvChad/starter /root/.config/nvim && sudo nvim                                        #Type :q! and hit Enter (it seems that it doesn't work, but it does)
 cd
 

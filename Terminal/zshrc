@@ -226,12 +226,16 @@ bindkey "^[[1;5D" backward-word
 
 fastfetch
 
-export LIBVIRT_DEFAULT_URI="qemu:///system"
-export Mp3DownTagger=/opt/Mp3DownTagger/
-
 export PATH=$PATH:/opt/scripts/
 export PATH=$PATH:~/.local/bin
+export Mp3DownTagger=/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Mp3DownTagger/
 export PATH=$PATH:/opt/Steganography/
 export PATH=$PATH:/opt/cuda/bin/
 export PATH=$PATH:/var/lib/snapd/snap/bin
+export PATH=$PATH:~/.cargo/bin
+export GOPATH=$HOME/.local/share/go
+export GOBIN=$HOME/.local/bin
+export PATH=$PATH:$GOBIN
+
+export LIBVIRT_DEFAULT_URI="qemu:///system"
